@@ -16,10 +16,13 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeId;
     @OneToOne
+    @NotNull
     private Staff managerStaffId;
     @OneToOne
     private Address address;
     private LocalDateTime lastUpadte;
     @OneToMany(mappedBy = "store")
     List<Customer> customers;
+    @OneToMany(mappedBy = "store")
+    List<Inventory>inventories;
 }
