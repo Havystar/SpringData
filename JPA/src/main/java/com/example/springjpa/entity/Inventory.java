@@ -1,6 +1,7 @@
 package com.example.springjpa.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +20,18 @@ public class Inventory {
     private Rental rental;
     private LocalDate lastUpdate;
     @ManyToOne
-<<<<<<< HEAD
     @NotNull
     private Store store;
     @ManyToOne
-    @NotNull
-=======
-    private Store store;
-    @ManyToOne
->>>>>>> 1dd758134be2e29d368f48754c74cb962b43ee66
     private Film film;
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
+
+    public Inventory(Rental rental, LocalDate lastUpdate, Store store, Film film, List<Rental> rentals) {
+        this.rental = rental;
+        this.lastUpdate = lastUpdate;
+        this.store = store;
+        this.film = film;
+        this.rentals = rentals;
+    }
 }

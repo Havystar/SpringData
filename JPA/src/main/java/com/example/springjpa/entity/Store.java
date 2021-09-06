@@ -2,6 +2,7 @@ package com.example.springjpa.entity;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "store")
+@NoArgsConstructor
 public class Store {
 
     @Id
@@ -27,4 +28,12 @@ public class Store {
     List<Customer> customers;
     @OneToMany(mappedBy = "store")
     List<Inventory>inventories;
+
+    public Store(Staff managerStaffId, Address address, LocalDateTime lastUpadte, List<Customer> customers, List<Inventory> inventories) {
+        this.managerStaffId = managerStaffId;
+        this.address = address;
+        this.lastUpadte = lastUpadte;
+        this.customers = customers;
+        this.inventories = inventories;
+    }
 }
