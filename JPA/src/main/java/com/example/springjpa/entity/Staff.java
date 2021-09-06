@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,4 +16,7 @@ public class Staff {
     private Store store;
     @OneToOne
     private Address address;
+
+    @OneToMany(mappedBy = "staff")
+    List<Payment> payments;
 }

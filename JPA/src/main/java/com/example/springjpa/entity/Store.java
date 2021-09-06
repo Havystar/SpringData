@@ -4,6 +4,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,4 +18,5 @@ public class Store {
     private Staff managerStaffId;
     @OneToOne
     private Address address;
+    private LocalDateTime lastUpadte;
 }
