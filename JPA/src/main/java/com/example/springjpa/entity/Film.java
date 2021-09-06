@@ -28,7 +28,7 @@ public class Film {
 
     @OneToMany(mappedBy = "film")
     private List<FilmActor> filmActors;
-    @ManyToOne()
+    @ManyToOne
     private Language language;
 
 }

@@ -14,7 +14,7 @@ public class Staff {
     private Long storeId;
     @OneToOne
     private Store store;
-    @OneToOne
+    @ManyToOne
     private Address address;
 
     @OneToMany(mappedBy = "staff")

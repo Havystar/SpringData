@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +20,6 @@ public class Store {
     @OneToOne
     private Address address;
     private LocalDateTime lastUpadte;
+    @OneToMany(mappedBy = "store")
+    List<Customer> customers;
 }
