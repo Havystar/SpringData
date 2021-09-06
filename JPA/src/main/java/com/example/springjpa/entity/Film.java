@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,7 +16,17 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long filmId;
     private LocalDate lastUpdate;
-    @OneToMany(mappedBy = "film")
-    Set<FilmCategory> filmCategory;
+    private String title;
+    private String description;
+    private LocalDate releaseYear;
+    private int rentalDuration;
+    private double rental_rate;
+    private int length;
+    private double replacement_cost;
+    private String  rating;
+    private String special_features;
+
+    @ManyToOne()
+    private Language language;
 
 }
