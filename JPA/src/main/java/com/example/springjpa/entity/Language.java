@@ -15,13 +15,13 @@ public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long languageId;
-    private String Name;
+    private String name;
     private LocalDate lastUpdate;
     @OneToMany(mappedBy = "language", fetch = FetchType.EAGER)
     private List<Film> film;
 
     public Language(String name, LocalDate lastUpdate, List<Film> film) {
-        Name = name;
+        this.name = name;
         this.lastUpdate = lastUpdate;
         this.film = film;
     }

@@ -12,6 +12,8 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film, Long> {
     @Query("select film from Film film join film.filmCategory filmCategory join filmCategory.category category WHERE category.name = ?1")
     List<Film> findAllByCategory(String searched);
-   
+    @Query("select film from Film film join film.language language WHERE language.name = ?1")
+    List<Film> findAllByLanguage(String searched);
+
 
 }
