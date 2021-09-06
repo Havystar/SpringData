@@ -1,5 +1,6 @@
 package com.example.springjpa.entity;
 
+import lombok.Data;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table
+@Data
 public class FilmCategory {
     @Id
     private long id;
