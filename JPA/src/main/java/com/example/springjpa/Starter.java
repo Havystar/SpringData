@@ -52,6 +52,14 @@ public class Starter implements CommandLineRunner {
         addFilms();
         addCategory();
         addFilmCategory();
+
+        //outputs for tasks
+        //task1
+        categoryRepository.findAllOrderByName().stream().forEach(s -> System.out.println(s.getName()));
+        //task2
+        filmRepository.findAllByCategory("Horror").stream().forEach(s -> System.out.println(s.getFilmId()));
+        //task3
+        filmRepository.findAllByCategory("Horror").stream().forEach(s -> System.out.println(s.getFilmId()));
     }
 
     public void addLanguages() {
