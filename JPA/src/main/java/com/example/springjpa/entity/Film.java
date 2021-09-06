@@ -1,5 +1,6 @@
 package com.example.springjpa.entity;
 
+import com.example.springjpa.utils.Rating;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,7 +25,8 @@ public class Film {
     private double rental_rate;
     private int length;
     private double replacement_cost;
-    private String  rating;
+    @Enumerated(EnumType.STRING)
+    private Rating rating;
     private String special_features;
     @OneToMany(mappedBy = "film")
     private List<Inventory> inventories;
