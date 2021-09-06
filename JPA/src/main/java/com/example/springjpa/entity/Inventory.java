@@ -17,11 +17,8 @@ public class Inventory {
     private Rental rental;
     private LocalDate lastUpdate;
     @ManyToOne
-<<<<<<< HEAD
     private Store store;
     @ManyToOne
-=======
->>>>>>> 483520fbdbb43f5f4f33828ab97a66e670fccec2
     private Film film;
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
