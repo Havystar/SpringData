@@ -22,4 +22,6 @@ public class Store {
     private LocalDateTime lastUpadte;
     @OneToMany(mappedBy = "store")
     List<Customer> customers;
+    @OneToMany(mappedBy = "store")
+    List<Inventory>inventories;
 }

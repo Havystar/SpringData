@@ -13,9 +13,11 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inventoryId;
-    @OneToOne
+    @OneToOne()
     private Rental rental;
     private LocalDate lastUpdate;
-    @ManyToOne()
+    @ManyToOne
+    private Store store;
+    @ManyToOne
     private Film film;
 }
