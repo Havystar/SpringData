@@ -25,7 +25,8 @@ public class Film {
     private double replacement_cost;
     private String  rating;
     private String special_features;
-
+    @OneToMany(mappedBy = "film")
+    private List<Inventory> inventories;
     @OneToMany(mappedBy = "film")
     private List<FilmActor> filmActors;
     @ManyToOne
