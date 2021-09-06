@@ -14,6 +14,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long categoryId;
+    private String name;
     private LocalDate lastUpdate;
     @OneToMany(mappedBy = "category")
     Set<FilmCategory> filmCategory;
