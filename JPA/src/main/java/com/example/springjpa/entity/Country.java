@@ -3,16 +3,16 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Data
+public class Country {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;
-    @OneToOne
-    private Store store;
-    @OneToOne
-    private Address address;
+    private long id;
+
+    @OneToMany(mappedBy = "country")
+    private List<City> cities;
 }
