@@ -39,7 +39,9 @@ public class Film {
     @JoinColumn(name = "language_id")
     private Language language;
 
-    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, String special_features, List<Inventory> inventories, List<FilmActor> filmActors, Language language) {
+    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration,
+                double rental_rate, int length, double replacement_cost,
+                Rating rating, String special_features, List<Inventory> inventories, List<FilmActor> filmActors, Language language) {
         this.lastUpdate = lastUpdate;
         this.title = title;
         this.description = description;
