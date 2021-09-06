@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class City {
     @OneToMany(mappedBy = "city")
     private List<Address> addressList;
     @ManyToOne
+    @NotNull
     private Country country;
 
 }

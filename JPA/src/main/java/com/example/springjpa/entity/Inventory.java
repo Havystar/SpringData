@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,11 +18,10 @@ public class Inventory {
     private Rental rental;
     private LocalDate lastUpdate;
     @ManyToOne
-<<<<<<< HEAD
+    @NotNull
     private Store store;
     @ManyToOne
-=======
->>>>>>> 483520fbdbb43f5f4f33828ab97a66e670fccec2
+    @NotNull
     private Film film;
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;

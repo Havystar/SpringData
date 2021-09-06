@@ -4,6 +4,7 @@ import com.example.springjpa.embedableKey.FilmActorKey;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,11 +17,13 @@ public class FilmActor {
     @ManyToOne
     @MapsId("filmId")
     @JoinColumn(name="film_id")
+    @NotNull
     private Film film;
 
     @ManyToOne
     @MapsId("actorId")
     @JoinColumn(name="actor_id")
+    @NotNull
     private Actor actor;
 
     private LocalDateTime lastUpdate;

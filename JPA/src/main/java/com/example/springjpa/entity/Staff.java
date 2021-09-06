@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -15,6 +16,7 @@ public class Staff {
     @OneToOne
     private Store store;
     @ManyToOne
+    @NotNull
     private Address address;
 
     @OneToMany(mappedBy = "staff")

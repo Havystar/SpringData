@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -30,6 +31,7 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<FilmActor> filmActors;
     @ManyToOne
+    @NotNull
     private Language language;
 
 }

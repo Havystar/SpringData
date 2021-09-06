@@ -4,6 +4,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Store {
     @NotNull
     private Staff managerStaffId;
     @OneToOne
+    @NotNull
     private Address address;
     private LocalDateTime lastUpadte;
     @OneToMany(mappedBy = "store")

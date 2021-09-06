@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,9 +19,13 @@ public class Customer {
     private LocalDateTime createDate;
     private LocalDateTime lastUpdate;
     private Boolean active;
+    @OneToOne
+    Rental rental;
     @ManyToOne
+    @NotNull
     private Store store;
     @ManyToOne
+    @NotNull
     private Address address;
 
 

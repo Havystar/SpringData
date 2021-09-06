@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,8 +15,13 @@ public class Payment {
     private Double amount;
     private LocalDateTime paymentDate;
     @ManyToOne
+    @NotNull
+    Customer customer;
+    @ManyToOne
+    @NotNull
     private Staff staff;
     @ManyToOne
+    @NotNull
     private Rental rental;
 
 }
