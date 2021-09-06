@@ -15,5 +15,5 @@ public class Store {
     private Long storeId;
     @OneToOne
     private Staff managerStaffId;
-    
+
 }
