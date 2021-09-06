@@ -2,7 +2,9 @@ package com.example.springjpa.entity;
 
 import com.example.springjpa.utils.Rating;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +15,8 @@ import java.util.Set;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Film {
     @Id
@@ -31,6 +34,8 @@ public class Film {
     private Rating rating;
     private String special_features;
     @OneToMany(mappedBy = "film")
+    Set<FilmCategory> filmCategory;
+    @OneToMany(mappedBy = "film")
     private List<Inventory> inventories;
     @OneToMany(mappedBy = "film")
     private List<FilmActor> filmActors;
@@ -41,7 +46,7 @@ public class Film {
 
     public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration,
                 double rental_rate, int length, double replacement_cost,
-                Rating rating, String special_features, List<Inventory> inventories, List<FilmActor> filmActors, Language language) {
+                Rating rating, String special_features, List<Inventory> inventories, List<FilmActor> filmActors, Language language, Set<FilmCategory> filmCategory) {
         this.lastUpdate = lastUpdate;
         this.title = title;
         this.description = description;
@@ -55,5 +60,6 @@ public class Film {
         this.inventories = inventories;
         this.filmActors = filmActors;
         this.language = language;
+        this.filmCategory = filmCategory;
     }
 }

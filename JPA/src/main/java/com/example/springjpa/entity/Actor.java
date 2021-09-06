@@ -18,7 +18,7 @@ public class Actor {
     private String firstName;
     private String lastName;
     private LocalDateTime lastUpdate;
-    @OneToMany(mappedBy = "actor")
+    @OneToMany(mappedBy = "actor", fetch = FetchType.EAGER)
     private List<FilmActor> filmActors;
 
     public Actor(String firstName, String lastName, LocalDateTime lastUpdate, List<FilmActor> filmActors) {

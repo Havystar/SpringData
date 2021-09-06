@@ -2,26 +2,32 @@ package com.example.springjpa.entity;
 
 import com.example.springjpa.embedableKey.FilmCategoryKey;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class FilmCategory {
     @EmbeddedId
     FilmCategoryKey id;
+    public void setId() {
+        this.id = new FilmCategoryKey(film.getFilmId(), category.getCategoryId());
+    }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("filmId")
     @JoinColumn(name = "film_id")
     @NotNull
     Film film;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("categoryId")
     @JoinColumn(name = "category_id")
     @NotNull

@@ -26,9 +26,9 @@ public class Address {
     @NotNull
     @JoinColumn(name = "city_id")
     private City city;
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     private List<Customer> customers;
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     private List<Staff> staffList;
 
     public Address(String address, String address2, String district, String postalCode, String phone, LocalDateTime lastUpdate, City city, List<Customer> customers, List<Staff> staffList) {

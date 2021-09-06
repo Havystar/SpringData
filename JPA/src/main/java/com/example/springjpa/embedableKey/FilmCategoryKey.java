@@ -14,5 +14,11 @@ public class FilmCategoryKey implements Serializable {
     @Column(name = "category_id")
     private long categoryId;
 
+    public FilmCategoryKey(long filmId, long categoryId) {
+        this.filmId = filmId;
+        this.categoryId = categoryId;
+    }
 
+    public FilmCategoryKey() {
+    }
 }

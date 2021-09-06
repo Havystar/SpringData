@@ -17,7 +17,7 @@ public class City {
     private long id;
     private String city;
     LocalDateTime lastUpdate;
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
     private List<Address> addressList;
     @ManyToOne
     @NotNull
