@@ -34,6 +34,7 @@ public class Film {
     private List<FilmActor> filmActors;
     @ManyToOne
     @NotNull
+    @Column(name = "langage_id")
     private Language language;
 
 }
