@@ -16,6 +16,8 @@ public class Inventory {
     @OneToOne
     private Rental rental;
     private LocalDate lastUpdate;
-    @ManyToOne()
+    @ManyToOne
     private Film film;
+    @OneToMany(mappedBy = "inventory")
+    private List<Rental> rentals;
 }

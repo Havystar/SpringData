@@ -19,4 +19,6 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff")
     List<Payment> payments;
+    @OneToMany(mappedBy = "staff")
+    private List<Rental> rentals;
 }
