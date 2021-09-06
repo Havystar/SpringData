@@ -3,11 +3,9 @@ package com.example.springjpa.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,4 +16,6 @@ public class Actor {
     private String firstName;
     private String lastName;
     private LocalDateTime lastUpdate;
+    @OneToMany(mappedBy = "actor")
+    private List<FilmActor> filmActors;
 }

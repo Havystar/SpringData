@@ -26,6 +26,8 @@ public class Film {
     private String  rating;
     private String special_features;
 
+    @OneToMany(mappedBy = "film")
+    private List<FilmActor> filmActors;
     @ManyToOne()
     private Language language;
 
