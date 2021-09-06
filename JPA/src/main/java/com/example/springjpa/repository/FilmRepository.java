@@ -1,5 +1,6 @@
 package com.example.springjpa.repository;
 
+import com.example.springjpa.entity.Actor;
 import com.example.springjpa.entity.Category;
 import com.example.springjpa.entity.Film;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,8 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findAllByCategory(String searched);
     @Query("select film from Film film join film.language language WHERE language.name = ?1")
     List<Film> findAllByLanguage(String searched);
+    @Query("SELECT film from Film film join film.filmActors filmActors JOIN filmActors.actor actor where actor.firstName=?1 and actor.lastName=?2")
+    List<Actor> findAllByActorNameAndLastName(String firstName,String lastName);
 
 
 }
