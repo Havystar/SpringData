@@ -68,6 +68,8 @@ public class Starter implements CommandLineRunner {
         //actorRepository.findAllByFilm("Tytanic").stream().forEach(s -> System.out.println(s.getActorId()));
         //task5
         //filmService.getStatus(1L);
+        //task7
+        //customerRepository.findDataAndAddressById(1L);
         //task9
         //filmRepository.findAllByActorNameAndLastName("imie", "nazwisko").stream().forEach(s -> System.out.println(s.getActorId()));
     }
