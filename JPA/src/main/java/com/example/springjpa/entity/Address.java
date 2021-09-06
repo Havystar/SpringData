@@ -2,10 +2,7 @@ package com.example.springjpa.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
     private String address2;

@@ -1,5 +1,6 @@
 package com.example.springjpa.entity;
 
+import com.example.springjpa.embedableKey.FilmCategoryKey;
 import lombok.Data;
 
 import javax.persistence.*;

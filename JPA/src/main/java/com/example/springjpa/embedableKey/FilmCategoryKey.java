@@ -1,4 +1,4 @@
-package com.example.springjpa.entity;
+package com.example.springjpa.embedableKey;
 
 import lombok.Data;
 

@@ -3,6 +3,7 @@ package com.example.springjpa.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -13,4 +14,8 @@ public class Payment {
 
     @ManyToOne
     private Staff staff;
+
+    private Double amount;
+    private LocalDateTime paymentDate;
+
 }
