@@ -18,10 +18,15 @@ public class Inventory {
     private Rental rental;
     private LocalDate lastUpdate;
     @ManyToOne
+<<<<<<< HEAD
     @NotNull
     private Store store;
     @ManyToOne
     @NotNull
+=======
+    private Store store;
+    @ManyToOne
+>>>>>>> 1dd758134be2e29d368f48754c74cb962b43ee66
     private Film film;
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
