@@ -3,6 +3,7 @@ package com.example.springjpa;
 import com.example.springjpa.embedableKey.FilmCategoryKey;
 import com.example.springjpa.entity.*;
 import com.example.springjpa.repository.*;
+import com.example.springjpa.service.FilmService;
 import com.example.springjpa.utils.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -45,6 +46,9 @@ public class Starter implements CommandLineRunner {
     StaffRepository staffRepository;
     @Autowired
     StoreRepository storeRepository;
+    @Autowired
+    FilmService filmService;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -60,6 +64,12 @@ public class Starter implements CommandLineRunner {
         filmRepository.findAllByCategory("Horror").stream().forEach(s -> System.out.println(s.getFilmId()));
         //task3
         filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
+        //task4
+        //actorRepository.findAllByFilm("Tytanic").stream().forEach(s -> System.out.println(s.getActorId()));
+        //task5
+        //filmService.getStatus(1L);
+        //task9
+        //filmRepository.findAllByActorNameAndLastName("imie", "nazwisko").stream().forEach(s -> System.out.println(s.getActorId()));
     }
 
     public void addLanguages() {
