@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,6 +32,8 @@ public class Customer {
     @NotNull
     @JoinColumn(name = "address_id")
     private Address address;
+    @OneToMany(mappedBy = "customer")
+    List<Payment> payments;
 
     public Customer(String firstName, String lastName, String email, Boolean activebool,
                     LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental,

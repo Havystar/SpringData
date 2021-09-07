@@ -2,6 +2,7 @@ package com.example.springjpa.repository;
 
 import com.example.springjpa.entity.Category;
 import com.example.springjpa.entity.Customer;
+import com.example.springjpa.entity.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,5 +13,8 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     @Query("SELECT c, a FROM Customer c join c.address a where c.customer_id=?1")
     List<Object[]> findDataAndAddressById(Long id);
+
+    @Query("select l from Customer c join c.payments l where c.customer_id=?1")
+    List<Payment> findCustomerPayments(Long id);
 
 }
