@@ -56,6 +56,37 @@ public class Starter implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        initializeDataBase();
+       // filmService.getStatus(1L);
+    }
+
+    public void outputsForTasks() {
+        // Country country=countryRepository.findById(1L).get();
+        // System.out.println(country.getCities().size());
+        //outputs for tasks
+        //task1
+        // categoryRepository.findAllOrderByName().stream().forEach(s -> System.out.println(s.getName()));
+        //task2
+        // Pageable paging = PageRequest.of(0, 20);
+        // filmRepository.findAllByCategory("Horror",paging).stream().forEach(s -> System.out.println(s.getTitle()));
+        //task3
+        // filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
+        //task4
+        // actorRepository.findAllByFilm("Tytanic").stream().forEach(s -> System.out.println(s.getActorId()));
+        //task5
+        // filmService.getStatus(1L);
+        //task7
+        // customerRepository.findDataAndAddressById(1L);
+        //task9
+        // filmRepository.findAllByActorNameAndLastName("imie", "nazwisko").stream().forEach(s -> System.out.println(s.getActorId()));
+        //task10
+        // Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
+        // customerRepository.findCustomerRentals(2L,paging2).stream().forEach(s-> System.out.println(s.getRentalId()));
+
+
+    }
+
+    public void initializeDataBase() {
         addLanguages();
         addFilms();
         addCategory();
@@ -71,28 +102,6 @@ public class Starter implements CommandLineRunner {
         addInventory();
         addRental();
         addPayment();
-
-        //Country country=countryRepository.findById(1L).get();
-        //System.out.println(country.getCities().size());
-        //outputs for tasks
-        //task1
-       // categoryRepository.findAllOrderByName().stream().forEach(s -> System.out.println(s.getName()));
-       // List<User_Story> user_StoryListSorted = (List<User_Story>) user_StoryRepository.findAll(pagingAndSorting).getContent();
-        //task2
-        Pageable paging = PageRequest.of(0, 20);
-        Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
-        filmRepository.findAllByCategory("Horror",paging).stream().forEach(s -> System.out.println(s.getTitle()));
-        customerRepository.findCustomerRentals(2L,paging2).stream().forEach(s-> System.out.println(s.getRentalId()));
-        //task3
-     //   filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
-        //task4
-        //actorRepository.findAllByFilm("Tytanic").stream().forEach(s -> System.out.println(s.getActorId()));
-        //task5
-        //filmService.getStatus(1L);
-        //task7
-        //customerRepository.findDataAndAddressById(1L);
-        //task9
-        //filmRepository.findAllByActorNameAndLastName("imie", "nazwisko").stream().forEach(s -> System.out.println(s.getActorId()));
     }
 
     public void addLanguages() {
@@ -128,69 +137,65 @@ public class Starter implements CommandLineRunner {
     public void addFilmCategory() {
         Optional<Film> film = filmRepository.findById(1L);
         Optional<Category> category = categoryRepository.findById(1L);
-        FilmCategory filmCategory = new FilmCategory(film.get(),category.get(),null);
+        FilmCategory filmCategory = new FilmCategory(film.get(), category.get(), null);
         filmCategory.setId();
         film = filmRepository.findById(2L);
         category = categoryRepository.findById(2L);
-        FilmCategory filmCategory2 = new FilmCategory(film.get(),category.get(),null);
+        FilmCategory filmCategory2 = new FilmCategory(film.get(), category.get(), null);
         filmCategory2.setId();
         film = filmRepository.findById(3L);
         category = categoryRepository.findById(2L);
-        FilmCategory filmCategory3 = new FilmCategory(film.get(),category.get(),null);
+        FilmCategory filmCategory3 = new FilmCategory(film.get(), category.get(), null);
         filmCategory3.setId();
         filmCategoryRepository.save(filmCategory);
         filmCategoryRepository.save(filmCategory2);
         filmCategoryRepository.save(filmCategory3);
     }
 
-    public void createActor()
-    {
-        Actor actor = new Actor("Andrzej","Kabala",null,null);
-        Actor actor1 = new Actor("Jerzy","ASDASDAS",null,null);
-        Actor actor2 = new Actor("Piotrek","ESESESE",null,null);
-        actorRepository.saveAll(Arrays.asList(actor1,actor,actor2));
+    public void createActor() {
+        Actor actor = new Actor("Andrzej", "Kabala", null, null);
+        Actor actor1 = new Actor("Jerzy", "ASDASDAS", null, null);
+        Actor actor2 = new Actor("Piotrek", "ESESESE", null, null);
+        actorRepository.saveAll(Arrays.asList(actor1, actor, actor2));
     }
 
     @Transactional
-    public void createFilmActor()
-    {
-       Optional<Film> film= filmRepository.findById(1L);
-       Optional<Film> film1=filmRepository.findById(2L);
-       Optional<Film>film2=filmRepository.findById(3L);
-       Optional<Actor> actor=actorRepository.findById(1L);
-        FilmActor filmActor= new FilmActor(film.get(),actor.get(),null);
-        FilmActor filmActor1= new FilmActor(film1.get(),actor.get(),null);
-        FilmActor filmActor2= new FilmActor(film2.get(),actor.get(),null);
+    public void createFilmActor() {
+        Optional<Film> film = filmRepository.findById(1L);
+        Optional<Film> film1 = filmRepository.findById(2L);
+        Optional<Film> film2 = filmRepository.findById(3L);
+        Optional<Actor> actor = actorRepository.findById(1L);
+        FilmActor filmActor = new FilmActor(film.get(), actor.get(), null);
+        FilmActor filmActor1 = new FilmActor(film1.get(), actor.get(), null);
+        FilmActor filmActor2 = new FilmActor(film2.get(), actor.get(), null);
         filmActor.setId();
         filmActor1.setId();
         filmActor2.setId();
-        filmActorRepository.saveAll(Arrays.asList(filmActor,filmActor1,filmActor2));
+        filmActorRepository.saveAll(Arrays.asList(filmActor, filmActor1, filmActor2));
     }
 
-    public void addCountries()
-    {
-        Country country= new Country("Serbia",null,null);
-        Country country1= new Country("Bosnia",null,null);
-        Country country2= new Country("Czechy",null,null);
-        countryRepository.saveAll(Arrays.asList(country,country1,country2));
+    public void addCountries() {
+        Country country = new Country("Serbia", null, null);
+        Country country1 = new Country("Bosnia", null, null);
+        Country country2 = new Country("Czechy", null, null);
+        countryRepository.saveAll(Arrays.asList(country, country1, country2));
     }
 
-    public void addCities()
-    {
-        City city=new City("Gliwice",null,null,countryRepository.findById(1L).get());
-        City city1=new City("Zabrze",null,null,countryRepository.findById(1L).get());
-        City city2=new City("Katowice",null,null,countryRepository.findById(3L).get());
-        cityRepository.saveAll(Arrays.asList(city,city1,city2));
+    public void addCities() {
+        City city = new City("Gliwice", null, null, countryRepository.findById(1L).get());
+        City city1 = new City("Zabrze", null, null, countryRepository.findById(1L).get());
+        City city2 = new City("Katowice", null, null, countryRepository.findById(3L).get());
+        cityRepository.saveAll(Arrays.asList(city, city1, city2));
     }
-    public void addAddress()
-    {
-     Address address = new Address("Zeromskiego","test","dystryk9","444-4","12341234",
-             null,cityRepository.findById(1L).get(),null,null);
-        Address address1 = new Address("Bytomska","test","dystryk1","444-4","12341234",
-                null,cityRepository.findById(1L).get(),null,null);
-        Address address2 = new Address("Katowicka","test","dystryk2","444-4","12341234",
-                null,cityRepository.findById(1L).get(),null,null);
-        addressRepository.saveAll(Arrays.asList(address,address1,address2));
+
+    public void addAddress() {
+        Address address = new Address("Zeromskiego", "test", "dystryk9", "444-4", "12341234",
+                null, cityRepository.findById(1L).get(), null, null);
+        Address address1 = new Address("Bytomska", "test", "dystryk1", "444-4", "12341234",
+                null, cityRepository.findById(1L).get(), null, null);
+        Address address2 = new Address("Katowicka", "test", "dystryk2", "444-4", "12341234",
+                null, cityRepository.findById(1L).get(), null, null);
+        addressRepository.saveAll(Arrays.asList(address, address1, address2));
     }
 
 
@@ -202,75 +207,71 @@ public class Starter implements CommandLineRunner {
 //        filmRepository.save(film.get());
 //    }
 
-    public void addStaff()
-    {
-        Staff staff= new Staff(null,"Tomek","Tomek","EASDAS@gmail.com",
-                null,"esses","es",null,"easdasd",addressRepository.findById(1L).get()
-                ,null,null);
-        Staff staff2= new Staff(null,"jerzy","Kicha","EASDAS@gmail.com",
-                null,"esses","es",null,"easdasd",addressRepository.findById(1L).get()
-                ,null,null);
-        Staff staff3= new Staff(null,"Puotrek","Wojt","EASDAS@gmail.com",
-                null,"esses","es",null,"easdasd",addressRepository.findById(1L).get()
-                ,null,null);
-        staffRepository.saveAll(Arrays.asList(staff,staff2,staff3));
+    public void addStaff() {
+        Staff staff = new Staff(null, "Tomek", "Tomek", "EASDAS@gmail.com",
+                null, "esses", "es", null, "easdasd", addressRepository.findById(1L).get()
+                , null, null);
+        Staff staff2 = new Staff(null, "jerzy", "Kicha", "EASDAS@gmail.com",
+                null, "esses", "es", null, "easdasd", addressRepository.findById(1L).get()
+                , null, null);
+        Staff staff3 = new Staff(null, "Puotrek", "Wojt", "EASDAS@gmail.com",
+                null, "esses", "es", null, "easdasd", addressRepository.findById(1L).get()
+                , null, null);
+        staffRepository.saveAll(Arrays.asList(staff, staff2, staff3));
     }
 
-    public void addStore()
-    {
-        Store store = new Store(staffRepository.findById(1L).get(),addressRepository.findById(1L).get()
-                ,null,null,null);
-        Store store1 = new Store(staffRepository.findById(2L).get(),addressRepository.findById(1L).get()
-                ,null,null,null);
-        Store store2 = new Store(staffRepository.findById(3L).get(),addressRepository.findById(2L).get()
-                ,null,null,null);
-        storeRepository.saveAll(Arrays.asList(store,store2,store1));
+    public void addStore() {
+        Store store = new Store(staffRepository.findById(1L).get(), addressRepository.findById(1L).get()
+                , null, null, null);
+        Store store1 = new Store(staffRepository.findById(2L).get(), addressRepository.findById(1L).get()
+                , null, null, null);
+        Store store2 = new Store(staffRepository.findById(3L).get(), addressRepository.findById(2L).get()
+                , null, null, null);
+        storeRepository.saveAll(Arrays.asList(store, store2, store1));
     }
 
 
-    public void addCustomer()
-    {
-        Customer customer = new Customer("Jerzy","Kabala","ASDASDASD@Gmail.com",null
-                ,null,null,null,null
-                ,storeRepository.findById(1L).get(),addressRepository.findById(1L).get());
-        Customer customer1 = new Customer("Tomek","EASDAS","ASDASDASD@Gmail.com",null
-                ,null,null,null,null
-                ,storeRepository.findById(1L).get(),addressRepository.findById(1L).get());
-        Customer customer2 = new Customer("Piotrek","Tomla","ASDASDASD@Gmail.com",null
-                ,null,null,null,null
-                ,storeRepository.findById(1L).get(),addressRepository.findById(3L).get());
-        customerRepository.saveAll(Arrays.asList(customer,customer1,customer2));
+    public void addCustomer() {
+        Customer customer = new Customer("Jerzy", "Kabala", "ASDASDASD@Gmail.com", null
+                , null, null, null, null
+                , storeRepository.findById(1L).get(), addressRepository.findById(1L).get());
+        Customer customer1 = new Customer("Tomek", "EASDAS", "ASDASDASD@Gmail.com", null
+                , null, null, null, null
+                , storeRepository.findById(1L).get(), addressRepository.findById(1L).get());
+        Customer customer2 = new Customer("Piotrek", "Tomla", "ASDASDASD@Gmail.com", null
+                , null, null, null, null
+                , storeRepository.findById(1L).get(), addressRepository.findById(3L).get());
+        customerRepository.saveAll(Arrays.asList(customer, customer1, customer2));
     }
 
-    public void addInventory()
-    {
-        Inventory inventory = new Inventory(null,null,storeRepository.findById(1L).get()
-                ,filmRepository.findById(1L).get(),null);
-        Inventory inventory1 = new Inventory(null,null,storeRepository.findById(2L).get()
-                ,filmRepository.findById(1L).get(),null);
-        Inventory inventory2 = new Inventory(null,null,storeRepository.findById(3L).get()
-                ,filmRepository.findById(2L).get(),null);
-        inventoryRepository.saveAll(Arrays.asList(inventory,inventory1,inventory2));
+    public void addInventory() {
+        Inventory inventory = new Inventory(null, null, storeRepository.findById(1L).get()
+                , filmRepository.findById(1L).get(), null);
+        Inventory inventory1 = new Inventory(null, null, storeRepository.findById(2L).get()
+                , filmRepository.findById(2L).get(), null);
+        Inventory inventory2 = new Inventory(null, null, storeRepository.findById(3L).get()
+                , filmRepository.findById(2L).get(), null);
+        inventoryRepository.saveAll(Arrays.asList(inventory, inventory1, inventory2));
     }
-    public void addRental()
-    {
-     Rental rental= new Rental(null,null,null,customerRepository.findById(2L).get()
-     ,inventoryRepository.findById(1L).get(),staffRepository.findById(1L).get(),null);
-     Rental rental1= new Rental(null,null,null,customerRepository.findById(2L).get()
-                ,inventoryRepository.findById(1L).get(),staffRepository.findById(1L).get(),null);
-     Rental rental2= new Rental(null,null,null,customerRepository.findById(3L).get()
-                ,inventoryRepository.findById(3L).get(),staffRepository.findById(2L).get(),null);
-     rentalRepository.saveAll(Arrays.asList(rental,rental1,rental2));
+
+    public void addRental() {
+        Rental rental = new Rental(null, null, null, customerRepository.findById(2L).get()
+                , inventoryRepository.findById(1L).get(), staffRepository.findById(1L).get(), null);
+        Rental rental1 = new Rental(null, null, null, customerRepository.findById(2L).get()
+                , inventoryRepository.findById(2L).get(), staffRepository.findById(1L).get(), null);
+        Rental rental2 = new Rental(null, null, null, customerRepository.findById(3L).get()
+                , inventoryRepository.findById(3L).get(), staffRepository.findById(2L).get(), null);
+        rentalRepository.saveAll(Arrays.asList(rental, rental1, rental2));
 
     }
-    public void addPayment()
-    {
-        Payment payment= new Payment(205.15,null,customerRepository.findById(1L).get()
-        ,staffRepository.findById(1L).get(),rentalRepository.findById(1L).get());
-        Payment payment1= new Payment(21.15,null,customerRepository.findById(1L).get()
-                ,staffRepository.findById(2L).get(),rentalRepository.findById(2L).get());
-        Payment payment2= new Payment(19.15,null,customerRepository.findById(2L).get()
-                ,staffRepository.findById(3L).get(),rentalRepository.findById(3L).get());
-        paymentRepository.saveAll(Arrays.asList(payment,payment1,payment2));
+
+    public void addPayment() {
+        Payment payment = new Payment(205.15, null, customerRepository.findById(1L).get()
+                , staffRepository.findById(1L).get(), rentalRepository.findById(1L).get());
+        Payment payment1 = new Payment(21.15, null, customerRepository.findById(1L).get()
+                , staffRepository.findById(2L).get(), rentalRepository.findById(2L).get());
+        Payment payment2 = new Payment(19.15, null, customerRepository.findById(2L).get()
+                , staffRepository.findById(3L).get(), rentalRepository.findById(3L).get());
+        paymentRepository.saveAll(Arrays.asList(payment, payment1, payment2));
     }
 }
