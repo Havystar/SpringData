@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -79,7 +80,9 @@ public class Starter implements CommandLineRunner {
        // List<User_Story> user_StoryListSorted = (List<User_Story>) user_StoryRepository.findAll(pagingAndSorting).getContent();
         //task2
         Pageable paging = PageRequest.of(0, 20);
+        Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
         filmRepository.findAllByCategory("Horror",paging).stream().forEach(s -> System.out.println(s.getTitle()));
+        customerRepository.findCustomerRentals(2L,paging2).stream().forEach(s-> System.out.println(s.getRentalId()));
         //task3
      //   filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
         //task4
