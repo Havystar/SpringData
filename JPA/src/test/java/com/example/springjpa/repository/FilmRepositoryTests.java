@@ -1,9 +1,11 @@
-package com.example.springjpa;
+package com.example.springjpa.repository;
 
 
+import com.example.springjpa.SpringJpaApplication;
 import com.example.springjpa.entity.Film;
 import com.example.springjpa.repository.FilmRepository;
 import com.example.springjpa.repository.LanguageRepository;
+import com.example.springjpa.service.FilmService;
 import com.example.springjpa.utils.Rating;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = SpringJpaApplication.class)
 public class FilmRepositoryTests {
+    @Autowired
+    FilmService filmService;
     @Autowired
     FilmRepository filmRepository;
     @Autowired
@@ -30,7 +34,5 @@ public class FilmRepositoryTests {
                 filter(f -> f.getTitle().equals("test")).
                 findFirst().get(), film);
     }
-    
-
 
 }
