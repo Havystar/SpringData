@@ -8,6 +8,8 @@ import com.example.springjpa.utils.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -69,13 +71,15 @@ public class Starter implements CommandLineRunner {
         addRental();
         addPayment();
 
-        Country country=countryRepository.findById(1L).get();
-        System.out.println(country.getCities().size());
+        //Country country=countryRepository.findById(1L).get();
+        //System.out.println(country.getCities().size());
         //outputs for tasks
         //task1
        // categoryRepository.findAllOrderByName().stream().forEach(s -> System.out.println(s.getName()));
+       // List<User_Story> user_StoryListSorted = (List<User_Story>) user_StoryRepository.findAll(pagingAndSorting).getContent();
         //task2
-        //filmRepository.findAllByCategory("Horror").stream().forEach(s -> System.out.println(s.getDescription()));
+        Pageable paging = PageRequest.of(0, 20);
+        filmRepository.findAllByCategory("Horror",paging).stream().forEach(s -> System.out.println(s.getTitle()));
         //task3
      //   filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
         //task4
@@ -111,9 +115,9 @@ public class Starter implements CommandLineRunner {
                 , 20, 20, 20, Rating.G, "XD", null, null, opLanguage.get(), null);
         Film film2 = new Film(LocalDate.now(), "Wielki Potwor", "XD", LocalDate.now(), 20
                 , 20, 20, 20, Rating.G, "XD", null, null, opLanguage.get(), null);
+        opLanguage.get().getFilm().add(film);
         opLanguage.get().getFilm().add(film1);
         opLanguage.get().getFilm().add(film2);
-        opLanguage.get().getFilm().add(film);
         languageRepository.save(opLanguage.get());
         filmRepository.save(film);
         filmRepository.save(film2);
@@ -131,7 +135,7 @@ public class Starter implements CommandLineRunner {
         FilmCategory filmCategory2 = new FilmCategory(film.get(),category.get(),null);
         filmCategory2.setId();
         film = filmRepository.findById(3L);
-        category = categoryRepository.findById(3L);
+        category = categoryRepository.findById(2L);
         FilmCategory filmCategory3 = new FilmCategory(film.get(),category.get(),null);
         filmCategory3.setId();
         filmCategoryRepository.save(filmCategory);
