@@ -18,11 +18,11 @@ public class FilmService {
     public String getStatus(Long id) {
         LocalDate now = LocalDate.now();
         Rental rental = repository.findByFilmId(id);
-        if(rental.getReturnDate() != null){
-            return "wypożyczony";
+        if(now.isAfter(rental.getReturnDate())){
+            return "dostępny";
         }
         else {
-            return "dostępny";
+            return "wypozyczony";
         }
     }
 }
