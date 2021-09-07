@@ -37,7 +37,6 @@ public class City {
                 "id=" + id +
                 ", city='" + city + '\'' +
                 ", lastUpdate=" + lastUpdate +
-                ", addressList=" + addressList +
                 '}';
     }
 }

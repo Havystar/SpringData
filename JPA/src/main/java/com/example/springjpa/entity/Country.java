@@ -27,13 +27,13 @@ public class Country {
         this.cities = cities;
     }
 
+
     @Override
     public String toString() {
         return "Country{" +
                 "id=" + id +
                 ", country='" + country + '\'' +
                 ", lastUpdate=" + lastUpdate +
-                ", cities=" + cities +
                 '}';
     }
 }

@@ -28,7 +28,7 @@ public class Customer {
     @NotNull
     @JoinColumn(name = "store_id")
     private Store store;
-    @ManyToOne
+    @ManyToOne()
     @NotNull
     @JoinColumn(name = "address_id")
     private Address address;
