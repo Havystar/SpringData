@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.bytebuddy.implementation.EqualsMethod;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -61,5 +63,18 @@ public class Film {
         this.filmActors = filmActors;
         this.language = language;
         this.filmCategory = filmCategory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Film)) return false;
+        Film film = (Film) o;
+        return getRentalDuration() == film.getRentalDuration() && Double.compare(film.getRental_rate(), getRental_rate()) == 0 && getLength() == film.getLength() && Double.compare(film.getReplacement_cost(), getReplacement_cost()) == 0 && Objects.equals(getLastUpdate(), film.getLastUpdate()) && Objects.equals(getTitle(), film.getTitle()) && Objects.equals(getDescription(), film.getDescription()) && Objects.equals(getReleaseYear(), film.getReleaseYear()) && getRating() == film.getRating() && Objects.equals(getSpecial_features(), film.getSpecial_features());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLastUpdate(), getTitle(), getDescription(), getReleaseYear(), getRentalDuration(), getRental_rate(), getLength(), getReplacement_cost(), getRating(), getSpecial_features());
     }
 }
