@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -48,5 +49,32 @@ public class Customer {
         this.rental = rental;
         this.store = store;
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(customer_id, customer.customer_id) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email) && Objects.equals(activebool, customer.activebool) && Objects.equals(createDate, customer.createDate) && Objects.equals(lastUpdate, customer.lastUpdate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customer_id, firstName, lastName, email, activebool, createDate, lastUpdate);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customer_id=" + customer_id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", activebool=" + activebool +
+                ", createDate=" + createDate +
+                ", lastUpdate=" + lastUpdate +
+                ", active=" + active +
+                '}';
     }
 }

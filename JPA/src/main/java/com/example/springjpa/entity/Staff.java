@@ -50,4 +50,20 @@ public class Staff {
         this.payments = payments;
         this.rentals = rentals;
     }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId=" + staffId +
+                ", store=" + store +
+                ", firtName='" + firtName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                ", picture='" + picture + '\'' +
+                '}';
+    }
 }

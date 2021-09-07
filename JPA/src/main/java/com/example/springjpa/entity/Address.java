@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -53,8 +54,19 @@ public class Address {
                 ", postalCode='" + postalCode + '\'' +
                 ", phone='" + phone + '\'' +
                 ", lastUpdate=" + lastUpdate +
-                ", customers=" + customers +
-                ", staffList=" + staffList +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address1 = (Address) o;
+        return Objects.equals(id, address1.id) && Objects.equals(address, address1.address) && Objects.equals(address2, address1.address2) && Objects.equals(district, address1.district) && Objects.equals(postalCode, address1.postalCode) && Objects.equals(phone, address1.phone) && Objects.equals(lastUpdate, address1.lastUpdate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, address, address2, district, postalCode, phone, lastUpdate);
     }
 }
