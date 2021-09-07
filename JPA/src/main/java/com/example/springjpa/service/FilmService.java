@@ -17,12 +17,12 @@ public class FilmService {
 
     public String getStatus(Long id) {
         LocalDate now = LocalDate.now();
-        Rental rental = repository.findByFilmId(id);
-        if(now.isAfter(rental.getReturnDate())){
-            return "dostępny";
+        Optional<Rental> rental = Optional.ofNullable(repository.findByFilmId(id));
+        if(rental!=null) {
+            if (now.isAfter(rental.get().getReturnDate())) {
+                return "dostępny";
+            }
         }
-        else {
-            return "wypozyczony";
-        }
+        return "wypozyczony";
     }
 }
