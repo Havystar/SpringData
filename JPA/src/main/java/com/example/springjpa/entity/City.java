@@ -30,4 +30,14 @@ public class City {
         this.addressList = addressList;
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                ", addressList=" + addressList +
+                '}';
+    }
 }

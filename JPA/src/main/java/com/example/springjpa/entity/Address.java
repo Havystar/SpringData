@@ -28,7 +28,7 @@ public class Address {
     private City city;
     @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     private List<Customer> customers;
-    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private List<Staff> staffList;
 
     public Address(String address, String address2, String district, String postalCode, String phone, LocalDateTime lastUpdate, City city, List<Customer> customers, List<Staff> staffList) {
@@ -41,5 +41,20 @@ public class Address {
         this.city = city;
         this.customers = customers;
         this.staffList = staffList;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", district='" + district + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                ", customers=" + customers +
+                ", staffList=" + staffList +
+                '}';
     }
 }

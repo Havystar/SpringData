@@ -27,6 +27,11 @@ public class FilmActor {
     private Actor actor;
     private LocalDateTime lastUpdate;
 
+    public void setId() {
+
+        this.id=new FilmActorKey(this.film.getFilmId(),this.actor.getActorId());
+    }
+
     public FilmActor(Film film, Actor actor, LocalDateTime lastUpdate) {
         this.film = film;
         this.actor = actor;

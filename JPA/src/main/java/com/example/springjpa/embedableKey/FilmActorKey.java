@@ -13,4 +13,13 @@ public class FilmActorKey implements Serializable {
     private Long actorId;
     @Column(name="film_id")
     private Long filmId;
+
+    public FilmActorKey(long filmId, Long actorId) {
+        this.actorId=actorId;
+        this.filmId=filmId;
+    }
+    public FilmActorKey()
+    {
+
+    }
 }

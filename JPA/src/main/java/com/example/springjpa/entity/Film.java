@@ -33,11 +33,11 @@ public class Film {
     @Enumerated(EnumType.STRING)
     private Rating rating;
     private String special_features;
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film",fetch = FetchType.EAGER)
     Set<FilmCategory> filmCategory;
     @OneToMany(mappedBy = "film")
     private List<Inventory> inventories;
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film",fetch = FetchType.EAGER)
     private List<FilmActor> filmActors;
     @ManyToOne
     @NotNull

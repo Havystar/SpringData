@@ -32,7 +32,9 @@ public class Customer {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental, Store store, Address address) {
+    public Customer(String firstName, String lastName, String email, Boolean activebool,
+                    LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental,
+                    Store store, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
