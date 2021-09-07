@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 @SpringBootTest(classes = SpringJpaApplication.class)
 public class CategoryRepositoryTest {
@@ -33,7 +34,7 @@ public class CategoryRepositoryTest {
                 return c1.getName().compareTo(c2.getName());
             }
         });
-        assertEquals(categoryRepository.findAllOrderByName().stream().map(Category::getName).collect(Collectors.toList()), categories.stream().map(Category::getName).collect(Collectors.toList()));
+        assertIterableEquals(categoryRepository.findAllOrderByName().stream().map(Category::getName).collect(Collectors.toList()), categories.stream().map(Category::getName).collect(Collectors.toList()));
     }
 
 }
