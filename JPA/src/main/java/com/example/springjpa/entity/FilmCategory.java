@@ -21,13 +21,13 @@ public class FilmCategory {
         this.id = new FilmCategoryKey(film.getFilmId(), category.getCategoryId());
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @MapsId("filmId")
     @JoinColumn(name = "film_id")
     @NotNull
     Film film;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @MapsId("categoryId")
     @JoinColumn(name = "category_id")
     @NotNull

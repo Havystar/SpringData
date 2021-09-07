@@ -21,7 +21,7 @@ public class Category {
     private long categoryId;
     private String name;
     private LocalDate lastUpdate;
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category")
     Set<FilmCategory> filmCategory;
 
     public Category(String name, LocalDate lastUpdate, Set<FilmCategory> filmCategory) {

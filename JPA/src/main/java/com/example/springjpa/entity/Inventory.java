@@ -24,7 +24,7 @@ public class Inventory {
     private Store store;
     @ManyToOne
     private Film film;
-    @OneToMany(mappedBy = "inventory", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
 
     public Inventory(Rental rental, LocalDate lastUpdate, Store store, Film film, List<Rental> rentals) {

@@ -17,7 +17,7 @@ public class Language {
     private Long languageId;
     private String name;
     private LocalDate lastUpdate;
-    @OneToMany(mappedBy = "language", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "language")
     private List<Film> film;
 
     public Language(String name, LocalDate lastUpdate, List<Film> film) {
@@ -25,4 +25,5 @@ public class Language {
         this.lastUpdate = lastUpdate;
         this.film = film;
     }
+
 }

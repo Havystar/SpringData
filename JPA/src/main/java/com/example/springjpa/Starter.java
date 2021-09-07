@@ -118,9 +118,6 @@ public class Starter implements CommandLineRunner {
                 , 20, 20, 20, Rating.G, "XD", null, null, opLanguage.get(), null);
         Film film2 = new Film(LocalDate.now(), "Wielki Potwor", "XD", LocalDate.now(), 20
                 , 20, 20, 20, Rating.G, "XD", null, null, opLanguage.get(), null);
-        opLanguage.get().getFilm().add(film);
-        opLanguage.get().getFilm().add(film1);
-        opLanguage.get().getFilm().add(film2);
         languageRepository.save(opLanguage.get());
         filmRepository.save(film);
         filmRepository.save(film2);

@@ -18,7 +18,7 @@ public class Country {
     private String country;
     LocalDateTime lastUpdate;
 
-    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "country")
     private List<City> cities;
 
     public Country(String country, LocalDateTime lastUpdate, List<City> cities) {
