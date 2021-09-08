@@ -15,10 +15,13 @@ public class Starter implements CommandLineRunner {
     ActorRepository actorRepository;
     @Autowired
     CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         //outputs for tasks
         //Task 1
-        List<Category> task1 = categoryRepository.listAllSorted();
+        //List<Category> task1 = categoryRepository.listAllSorted();
+        actorRepository.getAllActorsInFilm("Kiepscy").forEach(System.out::println);
+
     }
 }
