@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pl.lbd.jdbc.entity.Actor;
 import pl.lbd.jdbc.entity.Film;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public interface FilmRepository extends PagingAndSortingRepository<Film,Long> {
 
     @Query("select * from film f join language l ON f.language_id=l.language_id WHERE l.name =:language")
     List<Film> findAllByLanguage(@Param("language") String language);
-   // @Query("SELECT film from Film film join film.filmActors filmActors JOIN filmActors.actor actor where actor.firstName=?1 and actor.lastName=?2")
-    //List<Actor> findAllByActorNameAndLastName(String firstName,String lastName);
+
+    @Query("SELECT * from film f join film_actor fa ON fa.film_id=f.film_id JOIN actor a ON a.actor_id=fa.actor_id where a.first_name=:firstName and a.last_name=:lastName")
+    List<Film> findAllByActorNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName );
 }

@@ -34,6 +34,8 @@ public class Starter implements CommandLineRunner {
         //List<Film> task3 = filmRepository.findAllByLanguage("Polski");
         //Task 4
         actorRepository.getAllActorsInFilm("Kiepscy").forEach(System.out::println);
-
+        //Task 9
+        List<Film> task9 = filmRepository.findAllByActorNameAndLastName("Andrzej","Kabala");
+        task9.forEach(System.out::println);
     }
 }
