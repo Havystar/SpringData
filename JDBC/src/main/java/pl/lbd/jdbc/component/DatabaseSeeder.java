@@ -1,6 +1,8 @@
 package pl.lbd.jdbc.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextStartedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,5 +19,10 @@ public class DatabaseSeeder {
         jdbcTemplate.execute("INSERT INTO address( address_id, address, address2, district, last_update, phone, postal_code, city_id) VALUES (1,Zeromskiego,test,dystryk9,null,12341234,444-4,1);");
         jdbcTemplate.execute("INSERT INTO address( address_id, address, address2, district, last_update, phone, postal_code, city_id) VALUES (2,Bytomska,test,dystryk1,null,12341234,444-4,1);");
         jdbcTemplate.execute("INSERT INTO address( address_id, address, address2, district, last_update, phone, postal_code, city_id) VALUES (3,Katowicka,test,dystryk2,null,12341234,444-4,1\n);");
+    }
+
+    @EventListener({ContextStartedEvent.class})
+    void seedData() {
+        insertData();
     }
 }
