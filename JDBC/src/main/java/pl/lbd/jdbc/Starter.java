@@ -3,6 +3,8 @@ package pl.lbd.jdbc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import pl.lbd.jdbc.entity.Category;
 import pl.lbd.jdbc.entity.Film;
 import pl.lbd.jdbc.repository.ActorRepository;
@@ -25,7 +27,11 @@ public class Starter implements CommandLineRunner {
         //Task 1
         //List<Category> task1 = categoryRepository.listAllSorted();
         //Task 2
-        //List<Film> task2 = filmRepository.findAllByLanguage("Polski");
+        Pageable paging = PageRequest.of(0, 20);
+        List<Film> task2 = filmRepository.findAllByCategory("Horror",paging);
+        task2.forEach(System.out::println);
+        //Task 3
+        //List<Film> task3 = filmRepository.findAllByLanguage("Polski");
         //Task 4
         actorRepository.getAllActorsInFilm("Kiepscy").forEach(System.out::println);
 

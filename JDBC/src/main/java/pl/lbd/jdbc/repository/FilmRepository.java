@@ -11,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface FilmRepository extends PagingAndSortingRepository<Film,Long> {
-  //  @Query("select * from Film film join film.filmCategory filmCategory join filmCategory.category category WHERE category.name = ?1")
-   // List<Film> findAllByCategory(String searched, Pageable paging);
+    @Query("select * from film f join film_category fc on fc.film_id=f.film_id join category c on fc.category_id=c.category_id WHERE c.name =:category")
+    List<Film> findAllByCategory(@Param("category") String category, Pageable paging);
 
     @Query("select * from film f join language l ON f.language_id=l.language_id WHERE l.name =:language")
     List<Film> findAllByLanguage(@Param("language") String language);
