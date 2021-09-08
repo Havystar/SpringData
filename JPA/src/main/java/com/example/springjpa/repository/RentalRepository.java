@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RentalRepository extends JpaRepository<Rental,Long> {
     @Query("select rental from Rental rental join rental.inventory inv join inv.film film where film.filmId = ?1")
-    Rental findByFilmId(Long id);
+    Optional<Rental> findByFilmId(Long id);
 
 }
