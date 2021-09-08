@@ -3,6 +3,8 @@ package pl.lbd.jdbc.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,11 +27,13 @@ public class Customer {
 
     private Address address;
 
+    @MappedCollection(idColumn = "customer_id")
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     List<Payment> payments;
 
     public Customer(String firstName, String lastName, String email, Boolean activebool,
                     LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental,
-                    Store store, Address address) {
+                    Store store, Address address,List<Payment> payments) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -40,6 +44,7 @@ public class Customer {
         this.rental = rental;
         this.store = store;
         this.address = address;
+        this.payments=payments;
     }
 
     @Override
@@ -55,6 +60,7 @@ public class Customer {
         return Objects.hash(customer_id, firstName, lastName, email, activebool, createDate, lastUpdate);
     }
 
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -62,10 +68,7 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", activebool=" + activebool +
-                ", createDate=" + createDate +
-                ", lastUpdate=" + lastUpdate +
-                ", active=" + active +
+                ", payments=" + payments +
                 '}';
     }
 }

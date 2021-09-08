@@ -1,13 +1,15 @@
 package pl.lbd.jdbc.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Payment {
     @Id
@@ -24,5 +26,14 @@ public class Payment {
         this.customer = customer;
         this.staff = staff;
         this.rental = rental;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", amount=" + amount +
+                ", paymentDate=" + paymentDate +
+                '}';
     }
 }
