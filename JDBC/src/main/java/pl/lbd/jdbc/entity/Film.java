@@ -1,6 +1,7 @@
 package pl.lbd.jdbc.entity;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +13,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class Film {
     @Id
     private long filmId;
-    private LocalDate lastUpdate;
     private String title;
     private String description;
     private LocalDate releaseYear;
@@ -27,14 +25,11 @@ public class Film {
     private int length;
     private double replacement_cost;
     private Rating rating;
+    private LocalDate lastUpdate;
     private String special_features;
-    private List<Inventory> inventories;
-    private Language language;
+    private String fulltext;
 
-    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration,
-                double rental_rate, int length, double replacement_cost,
-                Rating rating, String special_features, List<Inventory> inventories, Language language) {
-        this.lastUpdate = lastUpdate;
+    public Film(String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, LocalDate lastUpdate, String special_features, String fulltext) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
@@ -43,21 +38,8 @@ public class Film {
         this.length = length;
         this.replacement_cost = replacement_cost;
         this.rating = rating;
+        this.lastUpdate = lastUpdate;
         this.special_features = special_features;
-        this.inventories = inventories;
-        this.language = language;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Film)) return false;
-        Film film = (Film) o;
-        return getRentalDuration() == film.getRentalDuration() && Double.compare(film.getRental_rate(), getRental_rate()) == 0 && getLength() == film.getLength() && Double.compare(film.getReplacement_cost(), getReplacement_cost()) == 0 && Objects.equals(getLastUpdate(), film.getLastUpdate()) && Objects.equals(getTitle(), film.getTitle()) && Objects.equals(getDescription(), film.getDescription()) && Objects.equals(getReleaseYear(), film.getReleaseYear()) && getRating() == film.getRating() && Objects.equals(getSpecial_features(), film.getSpecial_features());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getLastUpdate(), getTitle(), getDescription(), getReleaseYear(), getRentalDuration(), getRental_rate(), getLength(), getReplacement_cost(), getRating(), getSpecial_features());
+        this.fulltext = fulltext;
     }
 }

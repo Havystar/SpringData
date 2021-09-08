@@ -3,6 +3,7 @@ package pl.lbd.jdbc.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @NoArgsConstructor
 public class Inventory {
+    @Id
     private Long inventoryId;
     private Rental rental;
     private LocalDate lastUpdate;
