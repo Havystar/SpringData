@@ -4,6 +4,7 @@ package pl.lbd.jdbc.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,15 +22,14 @@ public class Rental {
     private Customer customer;
     private Inventory inventory;
     private Staff staff;
-    private List<Payment> payments;
 
-    public Rental(LocalDate lastUpdate, LocalDate returnDate, LocalDate rentalDate, Customer customer, Inventory inventory, Staff staff, List<Payment> payments) {
+
+    public Rental(LocalDate lastUpdate, LocalDate returnDate, LocalDate rentalDate, Customer customer, Inventory inventory, Staff staff) {
         this.lastUpdate = lastUpdate;
         this.returnDate = returnDate;
         this.rentalDate = rentalDate;
         this.customer = customer;
         this.inventory = inventory;
         this.staff = staff;
-        this.payments = payments;
     }
 }

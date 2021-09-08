@@ -2,6 +2,7 @@ package pl.lbd.jdbc.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,10 +18,11 @@ public class Address {
     private String postalCode;
     private String phone;
     private LocalDateTime lastUpdate;
+
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private City city;
-    private List<Customer> customers;
-    private List<Staff> staffList;
-    public Address(String address, String address2, String district, String postalCode, String phone, LocalDateTime lastUpdate, City city, List<Customer> customers, List<Staff> staffList) {
+
+    public Address(String address, String address2, String district, String postalCode, String phone, LocalDateTime lastUpdate, City city) {
         this.address = address;
         this.address2 = address2;
         this.district = district;
@@ -28,7 +30,5 @@ public class Address {
         this.phone = phone;
         this.lastUpdate = lastUpdate;
         this.city = city;
-        this.customers = customers;
-        this.staffList = staffList;
     }
 }

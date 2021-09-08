@@ -22,18 +22,15 @@ public class Customer {
     private LocalDateTime createDate;
     private LocalDateTime lastUpdate;
     private Boolean active;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private Rental rental;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private Store store;
-
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private Address address;
 
-    @MappedCollection(idColumn = "customer_id")
-    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
-    List<Payment> payments;
 
-    public Customer(String firstName, String lastName, String email, Boolean activebool,
-                    LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental,
-                    Store store, Address address,List<Payment> payments) {
+    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active, Rental rental, Store store, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -44,20 +41,6 @@ public class Customer {
         this.rental = rental;
         this.store = store;
         this.address = address;
-        this.payments=payments;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(customer_id, customer.customer_id) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email) && Objects.equals(activebool, customer.activebool) && Objects.equals(createDate, customer.createDate) && Objects.equals(lastUpdate, customer.lastUpdate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(customer_id, firstName, lastName, email, activebool, createDate, lastUpdate);
     }
 
 
@@ -68,7 +51,6 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", payments=" + payments +
                 '}';
     }
 }

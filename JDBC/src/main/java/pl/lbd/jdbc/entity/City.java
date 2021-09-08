@@ -3,6 +3,7 @@ package pl.lbd.jdbc.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,15 +15,12 @@ public class City {
     private long cityId;
     private String city;
     LocalDateTime lastUpdate;
-
-    private List<Address> addressList;
-
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private Country country;
 
-    public City(String city, LocalDateTime lastUpdate, List<Address> addressList, Country country) {
+    public City(String city, LocalDateTime lastUpdate, Country country) {
         this.city = city;
         this.lastUpdate = lastUpdate;
-        this.addressList = addressList;
         this.country = country;
     }
 

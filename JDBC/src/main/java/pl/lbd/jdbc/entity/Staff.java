@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.catalina.Store;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,13 +24,11 @@ public class Staff {
     private String password;
     private LocalDate lastUpdate;
     private String picture;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
     private Address address;
-    List<Payment> payments;
-    private List<Rental> rentals;
 
 
-    public Staff(Store store, String firtName, String lastName, String email, Boolean active, String username, String password,
-                 LocalDate lastUpdate, String picture, Address address, List<Payment> payments, List<Rental> rentals) {
+    public Staff(Store store, String firtName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture, Address address) {
         this.store = store;
         this.firtName = firtName;
         this.lastName = lastName;
@@ -40,7 +39,5 @@ public class Staff {
         this.lastUpdate = lastUpdate;
         this.picture = picture;
         this.address = address;
-        this.payments = payments;
-        this.rentals = rentals;
     }
 }

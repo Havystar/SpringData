@@ -16,12 +16,11 @@ public class Language {
     private Long languageId;
     private String name;
     private LocalDate lastUpdate;
-    private List<Film> film;
 
-    public Language(String name, LocalDate lastUpdate, List<Film> film) {
+
+    public Language(String name, LocalDate lastUpdate) {
         this.name = name;
         this.lastUpdate = lastUpdate;
-        this.film = film;
     }
 
 }

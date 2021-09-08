@@ -18,14 +18,10 @@ public class Country {
     LocalDateTime lastUpdate;
 
 
-    private List<City> cities;
-
-    public Country(String country, LocalDateTime lastUpdate, List<City> cities) {
+    public Country(String country, LocalDateTime lastUpdate) {
         this.country = country;
         this.lastUpdate = lastUpdate;
-        this.cities = cities;
     }
-
 
     @Override
     public String toString() {
