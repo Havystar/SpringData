@@ -21,6 +21,7 @@ public class Starter implements CommandLineRunner {
         //outputs for tasks
         //Task 1
         //List<Category> task1 = categoryRepository.listAllSorted();
+        //Task 4
         actorRepository.getAllActorsInFilm("Kiepscy").forEach(System.out::println);
 
     }
