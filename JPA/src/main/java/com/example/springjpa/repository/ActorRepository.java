@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ActorRepository extends JpaRepository<Actor,Long> {
-    @Query("SELECT actor FROM Actor actor join actor.filmActors filmActors join filmActors.film film where film=?1")
+    @Query("SELECT actor FROM Actor actor join actor.filmActors filmActors join filmActors.film film where film.title=?1")
     List<Actor> findAllByFilm(String searched);
 }

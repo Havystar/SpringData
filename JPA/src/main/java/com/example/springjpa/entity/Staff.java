@@ -16,6 +16,7 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long staffId;
     @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "store_id")
     private Store store;
     private String firtName;
     private String lastName;

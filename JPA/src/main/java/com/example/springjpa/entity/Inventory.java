@@ -16,13 +16,16 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inventoryId;
-    @OneToOne()
+    @OneToOne
+    @JoinColumn(name = "rental_id")
     private Rental rental;
     private LocalDate lastUpdate;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "store_id")
     private Store store;
     @ManyToOne
+    @JoinColumn(name = "film_id")
     private Film film;
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;

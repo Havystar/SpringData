@@ -22,6 +22,7 @@ public class Rental {
     private LocalDate returnDate;
     private LocalDate rentalDate;
     @OneToOne
+    @JoinColumn(name = "customer_id")
     @NotNull
     private Customer customer;
     @ManyToOne

@@ -65,9 +65,9 @@ public class DatabaseSeeder {
         jdbcTemplate.execute("INSERT INTO inventory( inventory_id, last_update, film_id, rental_id, store_id) VALUES (2,null,2,null,2)");
         jdbcTemplate.execute("INSERT INTO inventory( inventory_id, last_update, film_id, rental_id, store_id) VALUES (3,null,3,null,3)");
 
-        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (1,null,null,null,2,1,1)");
-        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (2,null,null,null,2,2,2)");
-        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (3,null,null,null,3,3,3)");
+        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (1,current_timestamp(2),current_timestamp(2),current_timestamp(2),1,1,1)");
+        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (2,current_timestamp(2),current_timestamp(2),current_timestamp(2),2,2,2)");
+        jdbcTemplate.execute("INSERT INTO rental( rental_id, last_update, rental_date, return_date, customer_id, inventory_id, staff_id) VALUES (3,current_timestamp(2),current_timestamp(2),current_timestamp(2),3,3,3)");
 
         jdbcTemplate.execute("INSERT INTO payment( payment_id, amount, payment_date, customer_id, rental_id, staff_id) VALUES (1,205.15,null,1,1,1)");
         jdbcTemplate.execute("INSERT INTO payment( payment_id, amount, payment_date, customer_id, rental_id, staff_id) VALUES (2,205.15,null,2,2,2)");

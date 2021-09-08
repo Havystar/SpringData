@@ -18,6 +18,7 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeId;
     @OneToOne
+    @JoinColumn(name = "manager_staff_id")
     @NotNull
     private Staff managerStaffId;
     @OneToOne

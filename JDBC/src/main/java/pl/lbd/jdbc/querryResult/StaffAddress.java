@@ -1,11 +1,10 @@
-package com.example.springjpa.querryResult;
+package pl.lbd.jdbc.querryResult;
 
 
-import com.example.springjpa.entity.Address;
-import com.example.springjpa.entity.Staff;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import pl.lbd.jdbc.entity.Address;
+import pl.lbd.jdbc.entity.Staff;
 
 @Data
 @NoArgsConstructor

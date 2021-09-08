@@ -31,4 +31,8 @@ public class Address {
         this.lastUpdate = lastUpdate;
         this.city = city;
     }
+
+    public Address() {
+
+    }
 }

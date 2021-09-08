@@ -1,10 +1,9 @@
-package com.example.springjpa.querryResult;
+package pl.lbd.jdbc.querryResult;
 
 
-import com.example.springjpa.entity.Address;
-import com.example.springjpa.entity.Customer;
 import lombok.Data;
-
+import pl.lbd.jdbc.entity.Address;
+import pl.lbd.jdbc.entity.Customer;
 
 @Data
 public class CustomerAddress {

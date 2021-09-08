@@ -24,6 +24,7 @@ public class Customer {
     private LocalDateTime lastUpdate;
     private Boolean active;
     @OneToOne
+    @JoinColumn(name = "rental_id")
     Rental rental;
     @ManyToOne
     @NotNull

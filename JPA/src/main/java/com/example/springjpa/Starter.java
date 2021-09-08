@@ -2,6 +2,8 @@ package com.example.springjpa;
 
 import com.example.springjpa.embedableKey.FilmCategoryKey;
 import com.example.springjpa.entity.*;
+import com.example.springjpa.querryResult.CustomerAddress;
+import com.example.springjpa.querryResult.StaffAddress;
 import com.example.springjpa.repository.*;
 import com.example.springjpa.service.FilmService;
 import com.example.springjpa.utils.Rating;
@@ -57,31 +59,34 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         initializeDataBase();
-       // filmService.getStatus(1L);
+        outputsForTasks();
     }
 
     public void outputsForTasks() {
-        // Country country=countryRepository.findById(1L).get();
-        // System.out.println(country.getCities().size());
+
         //outputs for tasks
         //task1
-        // categoryRepository.findAllOrderByName().stream().forEach(s -> System.out.println(s.getName()));
+         List<Category> task1=categoryRepository.findAllOrderByName();
         //task2
-        // Pageable paging = PageRequest.of(0, 20);
-        // filmRepository.findAllByCategory("Horror",paging).stream().forEach(s -> System.out.println(s.getTitle()));
-        //task3
-        // filmRepository.findAllByLanguage("Polski").stream().forEach(s -> System.out.println(s.getFilmId()));
+         Pageable paging = PageRequest.of(0, 20);
+         List<Film> task2=filmRepository.findAllByCategory("Horror",paging);
+       // task3
+         List<Film> task3=filmRepository.findAllByLanguage("Polski");
         //task4
-        // actorRepository.findAllByFilm("Tytanic").stream().forEach(s -> System.out.println(s.getActorId()));
+        List<Actor>task4= actorRepository.findAllByFilm("Tytanic");
         //task5
-        // filmService.getStatus(1L);
+        String task5 = filmService.getStatus(1L);
+        //task6
+        List<Payment>task6=customerRepository.findCustomerPayments(1L);
         //task7
-        // customerRepository.findDataAndAddressById(1L);
+        CustomerAddress customerAddress=customerRepository.getCustomerAndAddress(1L);
+        //Task8
+        List<StaffAddress> staffAddresses= staffRepository.listStaffAndAddress();
         //task9
-        // filmRepository.findAllByActorNameAndLastName("imie", "nazwisko").stream().forEach(s -> System.out.println(s.getActorId()));
+        List<Film>task9= filmRepository.findAllByActorNameAndLastName("imie", "nazwisko");
         //task10
-        // Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
-        // customerRepository.findCustomerRentals(2L,paging2).stream().forEach(s-> System.out.println(s.getRentalId()));
+         Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
+         List<Rental> task10=customerRepository.findCustomerRentals(2L,paging2);
 
 
     }
@@ -199,13 +204,7 @@ public class Starter implements CommandLineRunner {
     }
 
 
-//    public void connectFilmToCategory() {
-//        Optional<Film> film = filmRepository.findById(1L);
-//        Optional<Category> category = categoryRepository.findById(1L);
-//        Set<FilmCategory> filmCategories = category.get().getFilmCategory();
-//        film.get().setFilmCategory(filmCategories);
-//        filmRepository.save(film.get());
-//    }
+
 
     public void addStaff() {
         Staff staff = new Staff(null, "Tomek", "Tomek", "EASDAS@gmail.com",
