@@ -47,17 +47,17 @@ CREATE TABLE country
 
 CREATE TABLE customer
 (
-    customer_id      bigint NOT NULL,
-    active           boolean,
-    activebool       boolean,
-    create_date      timestamp,
-    email            varchar(255),
-    first_name       varchar(255),
-    last_name        varchar(255),
-    last_update      timestamp,
-    address_id       bigint,
-    rental_rental_id bigint,
-    store_id         bigint,
+    customer_id bigint NOT NULL,
+    active      boolean,
+    activebool  boolean,
+    create_date timestamp,
+    email       varchar(255),
+    first_name  varchar(255),
+    last_name   varchar(255),
+    last_update timestamp,
+    address_id  bigint,
+    rental_id   bigint,
+    store_id    bigint,
     PRIMARY KEY (customer_id)
 );
 
@@ -96,11 +96,11 @@ CREATE TABLE film_category
 
 CREATE TABLE inventory
 (
-    inventory_id     bigint NOT NULL,
-    last_update      date,
-    film_film_id     bigint,
-    rental_rental_id bigint,
-    store_store_id   bigint,
+    inventory_id bigint NOT NULL,
+    last_update  date,
+    film_id bigint,
+    rental_id    bigint,
+    store_id     bigint,
     PRIMARY KEY (inventory_id)
 );
 
@@ -125,38 +125,38 @@ CREATE TABLE payment
 
 CREATE TABLE rental
 (
-    rental_id            bigint NOT NULL,
-    last_update          date,
-    rental_date          date,
-    return_date          date,
-    customer_customer_id bigint,
-    inventory_id         bigint,
-    staff_id             bigint,
+    rental_id    bigint NOT NULL,
+    last_update  date,
+    rental_date  date,
+    return_date  date,
+    customer_id  bigint,
+    inventory_id bigint,
+    staff_id     bigint,
     PRIMARY KEY (rental_id)
 );
 
 CREATE TABLE staff
 (
-    staff_id       bigint NOT NULL,
-    active         boolean,
-    email          varchar(255),
-    firt_name      varchar(255),
-    last_name      varchar(255),
-    last_update    date,
-    password       varchar(255),
-    picture        varchar(255),
-    username       varchar(255),
-    address_id     bigint,
-    store_store_id bigint,
+    staff_id    bigint NOT NULL,
+    active      boolean,
+    email       varchar(255),
+    firt_name   varchar(255),
+    last_name   varchar(255),
+    last_update date,
+    password    varchar(255),
+    picture     varchar(255),
+    username    varchar(255),
+    address_id  bigint,
+    store_id    bigint,
     PRIMARY KEY (staff_id)
 );
 
 CREATE TABLE store
 (
-    store_id                  bigint NOT NULL,
-    last_upadte               timestamp,
-    address_id                bigint,
-    manager_staff_id_staff_id bigint,
+    store_id         bigint NOT NULL,
+    last_upadte      timestamp,
+    address_id       bigint,
+    manager_staff_id bigint,
     PRIMARY KEY (store_id)
 );
 
@@ -177,7 +177,7 @@ ALTER TABLE customer
         REFERENCES address (address_id);
 
 ALTER TABLE customer
-    ADD FOREIGN KEY (rental_rental_id)
+    ADD FOREIGN KEY (rental_id)
         REFERENCES rental (rental_id);
 
 ALTER TABLE film
@@ -201,15 +201,15 @@ ALTER TABLE film_category
         REFERENCES film (film_id);
 
 ALTER TABLE inventory
-    ADD FOREIGN KEY (film_film_id)
+    ADD FOREIGN KEY (film_id)
         REFERENCES film (film_id);
 
 ALTER TABLE inventory
-    ADD FOREIGN KEY (rental_rental_id)
+    ADD FOREIGN KEY (rental_id)
         REFERENCES rental (rental_id);
 
 ALTER TABLE inventory
-    ADD FOREIGN KEY (store_store_id)
+    ADD FOREIGN KEY (store_id)
         REFERENCES store (store_id);
 
 ALTER TABLE payment
@@ -233,11 +233,11 @@ ALTER TABLE rental
         REFERENCES inventory (inventory_id);
 
 ALTER TABLE rental
-    ADD FOREIGN KEY (customer_customer_id)
+    ADD FOREIGN KEY (customer_id)
         REFERENCES customer (customer_id);
 
 ALTER TABLE staff
-    ADD FOREIGN KEY (store_store_id)
+    ADD FOREIGN KEY (store_id)
         REFERENCES store (store_id);
 
 ALTER TABLE staff
@@ -249,5 +249,5 @@ ALTER TABLE store
         REFERENCES address (address_id);
 
 ALTER TABLE store
-    ADD FOREIGN KEY (manager_staff_id_staff_id)
+    ADD FOREIGN KEY (manager_staff_id)
         REFERENCES staff (staff_id);
