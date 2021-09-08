@@ -78,6 +78,6 @@ public class DatabaseSeeder {
 
     @EventListener({ContextRefreshedEvent.class})
     void seedData() {
-        insertData();
+       // insertData();
     }
 }
