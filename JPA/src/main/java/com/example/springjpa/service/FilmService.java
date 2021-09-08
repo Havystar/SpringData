@@ -19,10 +19,10 @@ public class FilmService {
         LocalDate now = LocalDate.now();
         Optional<Rental> rental = repository.findByFilmId(id);
         if(rental.get()!=null&&rental.get().getReturnDate()!=null) {
-            if (now.isAfter(rental.get().getReturnDate())) {
-                return "dostępny";
-            }
+            return "dostępny";
         }
-        return "wypozyczony";
+        else {
+            return "wypozyczony";
+        }
     }
 }
