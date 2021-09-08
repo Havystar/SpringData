@@ -9,7 +9,7 @@ CREATE TABLE actor
 
 CREATE TABLE address
 (
-    id          bigint NOT NULL,
+    address_id  bigint NOT NULL,
     address     varchar(255),
     address2    varchar(255),
     district    varchar(255),
@@ -17,7 +17,7 @@ CREATE TABLE address
     phone       varchar(255),
     postal_code varchar(255),
     city_id     bigint,
-    PRIMARY KEY (id)
+    PRIMARY KEY (address_id)
 );
 
 CREATE TABLE category
@@ -30,19 +30,19 @@ CREATE TABLE category
 
 CREATE TABLE city
 (
-    id          bigint NOT NULL,
+    city_id     bigint NOT NULL,
     city        varchar(255),
     last_update timestamp,
     country_id  bigint,
-    PRIMARY KEY (id)
+    PRIMARY KEY (city_id)
 );
 
 CREATE TABLE country
 (
-    id          bigint NOT NULL,
+    country_id  bigint NOT NULL,
     country     varchar(255),
     last_update timestamp,
-    PRIMARY KEY (id)
+    PRIMARY KEY (country_id)
 );
 
 CREATE TABLE customer
@@ -162,11 +162,11 @@ CREATE TABLE store
 
 ALTER TABLE address
     ADD FOREIGN KEY (city_id)
-        REFERENCES city (id);
+        REFERENCES city (city_id);
 
 ALTER TABLE city
     ADD FOREIGN KEY (country_id)
-        REFERENCES country (id);
+        REFERENCES country (country_id);
 
 ALTER TABLE customer
     ADD FOREIGN KEY (store_id)
@@ -174,7 +174,7 @@ ALTER TABLE customer
 
 ALTER TABLE customer
     ADD FOREIGN KEY (address_id)
-        REFERENCES address (id);
+        REFERENCES address (address_id);
 
 ALTER TABLE customer
     ADD FOREIGN KEY (rental_rental_id)
@@ -242,11 +242,11 @@ ALTER TABLE staff
 
 ALTER TABLE staff
     ADD FOREIGN KEY (address_id)
-        REFERENCES address (id);
+        REFERENCES address (address_id);
 
 ALTER TABLE store
     ADD FOREIGN KEY (address_id)
-        REFERENCES address (id);
+        REFERENCES address (address_id);
 
 ALTER TABLE store
     ADD FOREIGN KEY (manager_staff_id_staff_id)
