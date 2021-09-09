@@ -4,22 +4,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
 
 @Data
 @Document
 @NoArgsConstructor
-public class Actor {
+public class Country {
+
     @Id
-    private String actorId;
-    private String firstName;
-    private String lastName;
+    private String id;
+    private String country;
     private LocalDate lastUpdate;
 
-    public Actor(String firstName, String lastName, LocalDate lastUpdate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Country(String country, LocalDate lastUpdate) {
+        this.country = country;
         this.lastUpdate = lastUpdate;
     }
 }

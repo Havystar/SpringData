@@ -10,16 +10,14 @@ import java.time.LocalDate;
 @Data
 @Document
 @NoArgsConstructor
-public class Actor {
+public class Language {
     @Id
-    private String actorId;
-    private String firstName;
-    private String lastName;
+    private String languageId;
+    private String name;
     private LocalDate lastUpdate;
 
-    public Actor(String firstName, String lastName, LocalDate lastUpdate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Language(String name, LocalDate lastUpdate) {
+        this.name = name;
         this.lastUpdate = lastUpdate;
     }
 }

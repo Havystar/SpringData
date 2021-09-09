@@ -10,16 +10,13 @@ import java.time.LocalDate;
 @Data
 @Document
 @NoArgsConstructor
-public class Actor {
+public class Store {
+
     @Id
-    private String actorId;
-    private String firstName;
-    private String lastName;
+    private String storeId;
     private LocalDate lastUpdate;
 
-    public Actor(String firstName, String lastName, LocalDate lastUpdate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Store(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }
