@@ -66,6 +66,8 @@ public class Starter implements CommandLineRunner {
         //List <Payment> task6 = customerRepository.findCustomerByFirstName("Zenek3").get().getPayment();
         //task7
         //Customer task7 = customerRepository.findCustomerByFirstName("Zenek3").get();
+        //task8
+        //List <Staff> task8 = staffRepository.findAll();
         //task9
         //List <Film> task9 = actorRepository.findActorByFirstNameAndLastName("Zenek","Orda").get().getFilms();
     }
