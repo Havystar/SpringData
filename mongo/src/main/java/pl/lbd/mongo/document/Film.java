@@ -10,6 +10,7 @@ import pl.lbd.mongo.utils.Rating;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Document
@@ -86,5 +87,18 @@ public class Film {
                 ", rating=" + rating +
                 ", special_features='" + special_features + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Film film = (Film) o;
+        return rentalDuration == film.rentalDuration && Double.compare(film.rental_rate, rental_rate) == 0 && length == film.length && Double.compare(film.replacement_cost, replacement_cost) == 0 && Objects.equals(lastUpdate, film.lastUpdate) && Objects.equals(title, film.title) && Objects.equals(description, film.description) && Objects.equals(releaseYear, film.releaseYear) && rating == film.rating;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastUpdate, title, description, releaseYear, rentalDuration, rental_rate, length, replacement_cost, rating);
     }
 }

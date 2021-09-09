@@ -22,8 +22,10 @@ public class Customer {
     private Boolean active;
     private List<Payment> payment;
     private Address address;
+    private List<Rental>rental;
 
-    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDate createDate, LocalDate lastUpdate, Boolean active, List<Payment> payment, Address address) {
+    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDate createDate, LocalDate lastUpdate, Boolean active,
+                    List<Payment> payment, Address address,List<Rental> rental) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,5 +35,6 @@ public class Customer {
         this.active = active;
         this.payment = payment;
         this.address = address;
+        this.rental=rental;
     }
 }

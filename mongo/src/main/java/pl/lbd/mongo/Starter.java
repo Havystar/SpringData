@@ -47,7 +47,7 @@ public class Starter implements CommandLineRunner {
     StoreRepository storeRepository;
 
     public void run(String... args) throws Exception {
-       // insertData();
+        //insertData();
         taskRunner();
 
 
@@ -70,6 +70,9 @@ public class Starter implements CommandLineRunner {
         //List <Staff> task8 = staffRepository.findAll();
         //task9
         //List <Film> task9 = actorRepository.findActorByFirstNameAndLastName("Zenek","Orda").get().getFilms();
+        //Task10
+        List<Rental> task10= customerRepository.findFirstByFirstName("Zenek3").get().getRental();
+        System.out.println(1);
     }
 
 
@@ -118,10 +121,16 @@ public class Starter implements CommandLineRunner {
         Payment payment1 = new Payment(20.2, now, staff1);
         Payment payment2 = new Payment(22.2, now, staff2);
         Payment payment3 = new Payment(24.2, now, staff3);
+        Rental rental1 = new Rental(now,now,now);
+        Rental rental2 = new Rental(now,now,now);
+        Rental rental3 = new Rental(now,now,now);
 
-        Customer customer1 = new Customer("Zenek1", "Ahmed3", "asd@wp.pl", true, now, now, true, Arrays.asList( payment1, payment3), address1);
-        Customer customer2 = new Customer("Zenek2", "Ahmed3", "asd@wp.pl", true, now, now, true,  Arrays.asList( payment2, payment3), address1);
-        Customer customer3 = new Customer("Zenek3", "Ahmed3", "asd@wp.pl", true, now, now, true,  Arrays.asList( payment1, payment3), address1);
+        Customer customer1 = new Customer("Zenek1", "Ahmed3", "asd@wp.pl", true, now, now,
+                true, Arrays.asList( payment1, payment3), address1,Arrays.asList(rental1));
+        Customer customer2 = new Customer("Zenek2", "Ahmed3", "asd@wp.pl", true, now, now,
+                true,  Arrays.asList( payment2, payment3), address1,Arrays.asList(rental2));
+        Customer customer3 = new Customer("Zenek3", "Ahmed3", "asd@wp.pl", true, now, now,
+                true,  Arrays.asList( payment1, payment3), address1,Arrays.asList(rental3));
 
         Film film1Full = new Film(film1, Arrays.asList(actor1));
         Film film2Full = new Film(film2, Arrays.asList(actor2));
@@ -137,6 +146,10 @@ public class Starter implements CommandLineRunner {
         paymentRepository.insert(payment1);
         paymentRepository.insert(payment2);
         paymentRepository.insert(payment3);
+
+        rentalRepository.insert(rental1);
+        rentalRepository.insert(rental2);
+        rentalRepository.insert(rental3);
 
         staffRepository.insert(staff1);
         staffRepository.insert(staff2);
