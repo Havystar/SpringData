@@ -4,7 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Document
@@ -16,12 +17,13 @@ public class Customer {
     private String lastName;
     private String email;
     private Boolean activebool;
-    private LocalDateTime createDate;
-    private LocalDateTime lastUpdate;
+    private LocalDate createDate;
+    private LocalDate lastUpdate;
     private Boolean active;
+    private List<Payment> payment;
+    private Address address;
 
-
-    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDateTime createDate, LocalDateTime lastUpdate, Boolean active) {
+    public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDate createDate, LocalDate lastUpdate, Boolean active, List<Payment> payment, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -29,5 +31,7 @@ public class Customer {
         this.createDate = createDate;
         this.lastUpdate = lastUpdate;
         this.active = active;
+        this.payment = payment;
+        this.address = address;
     }
 }

@@ -15,8 +15,11 @@ public class Store {
     @Id
     private String storeId;
     private LocalDate lastUpdate;
+    private Address address;
 
-    public Store(LocalDate lastUpdate) {
+
+    public Store(LocalDate lastUpdate, Address address) {
         this.lastUpdate = lastUpdate;
+        this.address = address;
     }
 }

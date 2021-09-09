@@ -14,9 +14,11 @@ public class Payment {
     private String paymentId;
     private Double amount;
     private LocalDate paymentDate;
+    private Staff staff;
 
-    public Payment(Double amount, LocalDate paymentDate) {
+    public Payment(Double amount, LocalDate paymentDate, Staff staff) {
         this.amount = amount;
         this.paymentDate = paymentDate;
+        this.staff = staff;
     }
 }

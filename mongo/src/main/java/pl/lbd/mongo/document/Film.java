@@ -3,6 +3,7 @@ package pl.lbd.mongo.document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pl.lbd.mongo.utils.Rating;
 
@@ -26,6 +27,7 @@ public class Film {
     private double replacement_cost;
     private Rating rating;
     private String special_features;
+  //  @DBRef
     private List<Actor> actors;
 
     public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, String special_features) {
@@ -67,5 +69,22 @@ public class Film {
         this.rating = film.rating;
         this.special_features = film.special_features;
         this.actors = actors;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmId='" + filmId + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", rentalDuration=" + rentalDuration +
+                ", rental_rate=" + rental_rate +
+                ", length=" + length +
+                ", replacement_cost=" + replacement_cost +
+                ", rating=" + rating +
+                ", special_features='" + special_features + '\'' +
+                '}';
     }
 }

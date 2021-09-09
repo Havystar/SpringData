@@ -20,6 +20,8 @@ public class Staff {
     private String password;
     private LocalDate lastUpdate;
     private String picture;
+    private Address address;
+    private Store store;
 
 
     public Staff(String firstName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture) {
@@ -31,5 +33,18 @@ public class Staff {
         this.password = password;
         this.lastUpdate = lastUpdate;
         this.picture = picture;
+    }
+
+    public Staff(String firstName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture, Address address, Store store) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.active = active;
+        this.username = username;
+        this.password = password;
+        this.lastUpdate = lastUpdate;
+        this.picture = picture;
+        this.address = address;
+        this.store = store;
     }
 }

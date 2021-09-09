@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class Inventory {
     @Id
     private String inventoryId;
+    private Store store;
     private LocalDate lastUpdate;
 
     public Inventory(LocalDate lastUpdate) {
