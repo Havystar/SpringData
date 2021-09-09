@@ -30,6 +30,7 @@ public class Film {
     private String special_features;
   //  @DBRef
     private List<Actor> actors;
+    private List<Inventory> inventories;
 
     public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, String special_features) {
         this.lastUpdate = lastUpdate;
@@ -70,6 +71,7 @@ public class Film {
         this.rating = film.rating;
         this.special_features = film.special_features;
         this.actors = actors;
+        this.inventories=film.inventories;
     }
 
     @Override

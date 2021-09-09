@@ -15,8 +15,15 @@ public class Inventory {
     private String inventoryId;
     private Store store;
     private LocalDate lastUpdate;
+    private Rental rental;
 
     public Inventory(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public Inventory(Store store, LocalDate lastUpdate, Rental rental) {
+        this.store = store;
+        this.lastUpdate = lastUpdate;
+        this.rental = rental;
     }
 }

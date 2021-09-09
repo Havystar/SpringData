@@ -8,8 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import pl.lbd.mongo.document.*;
 import pl.lbd.mongo.repository.*;
+import pl.lbd.mongo.service.FilmService;
 import pl.lbd.mongo.utils.Rating;
 
 import java.time.LocalDate;
@@ -45,6 +47,8 @@ public class Starter implements CommandLineRunner {
     StaffRepository staffRepository;
     @Autowired
     StoreRepository storeRepository;
+    @Autowired
+    FilmService filmService;
 
     public void run(String... args) throws Exception {
         //insertData();
@@ -62,6 +66,8 @@ public class Starter implements CommandLineRunner {
         //List <Film> task3 = languageRepository.findByName("Polski").get().getFilms();
         //task4
         //List <Film> task4 = actorRepository.findActorByFirstName("Zenek").get().getFilms();
+        //Task5
+        String status= filmService.getStatus("title1");
         //task6
         //List <Payment> task6 = customerRepository.findCustomerByFirstName("Zenek3").get().getPayment();
         //task7
@@ -125,6 +131,16 @@ public class Starter implements CommandLineRunner {
         Rental rental2 = new Rental(now,now,now);
         Rental rental3 = new Rental(now,now,now);
 
+        Inventory inventory1=new Inventory(store1,now,rental1);
+        Inventory inventory2=new Inventory(store2,now,rental2);
+        Inventory inventory3=new Inventory(store3,now,rental3);
+        film1.setInventories(Arrays.asList(inventory1));
+        film2.setInventories(Arrays.asList(inventory2));
+        film3.setInventories(Arrays.asList(inventory3));
+
+
+
+
         Customer customer1 = new Customer("Zenek1", "Ahmed3", "asd@wp.pl", true, now, now,
                 true, Arrays.asList( payment1, payment3), address1,Arrays.asList(rental1));
         Customer customer2 = new Customer("Zenek2", "Ahmed3", "asd@wp.pl", true, now, now,
@@ -150,6 +166,10 @@ public class Starter implements CommandLineRunner {
         rentalRepository.insert(rental1);
         rentalRepository.insert(rental2);
         rentalRepository.insert(rental3);
+
+        inventoryRepository.insert(inventory1);
+        inventoryRepository.insert(inventory2);
+        inventoryRepository.insert(inventory3);
 
         staffRepository.insert(staff1);
         staffRepository.insert(staff2);
