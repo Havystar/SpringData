@@ -25,7 +25,7 @@ public class Customer {
     private List<Rental>rental;
 
     public Customer(String firstName, String lastName, String email, Boolean activebool, LocalDate createDate, LocalDate lastUpdate, Boolean active,
-                    List<Payment> payment, Address address,List<Rental> rental) {
+                    List<Payment> payment, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -35,6 +35,19 @@ public class Customer {
         this.active = active;
         this.payment = payment;
         this.address = address;
+    }
+    public Customer(Customer customer,List<Rental>rental)
+    {
+        this.firstName = customer.firstName;
+        this.lastName = customer.lastName;
+        this.email = customer.email;
+        this.activebool = customer.activebool;
+        this.createDate = customer.createDate;
+        this.lastUpdate = customer.lastUpdate;
+        this.active = customer.active;
+        this.payment = customer.payment;
+        this.address = customer.address;
         this.rental=rental;
     }
+
 }

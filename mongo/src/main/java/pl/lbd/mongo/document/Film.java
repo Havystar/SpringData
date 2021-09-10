@@ -3,12 +3,10 @@ package pl.lbd.mongo.document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pl.lbd.mongo.utils.Rating;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,8 +29,12 @@ public class Film {
   //  @DBRef
     private List<Actor> actors;
     private List<Inventory> inventories;
+    private List<Category> categories;
 
-    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, String special_features) {
+    public Film(LocalDate lastUpdate, String title, String description,
+                LocalDate releaseYear, int rentalDuration, double rental_rate,
+                int length, double replacement_cost,
+                Rating rating, String special_features, List<Category> categories,String s) {
         this.lastUpdate = lastUpdate;
         this.title = title;
         this.description = description;
@@ -43,9 +45,14 @@ public class Film {
         this.replacement_cost = replacement_cost;
         this.rating = rating;
         this.special_features = special_features;
+        this.categories=categories;
+
+
     }
 
-    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear, int rentalDuration, double rental_rate, int length, double replacement_cost, Rating rating, String special_features, List<Actor> actors) {
+    public Film(LocalDate lastUpdate, String title, String description, LocalDate releaseYear,
+                int rentalDuration, double rental_rate, int length, double replacement_cost,
+                Rating rating, String special_features, List<Actor> actors) {
         this.lastUpdate = lastUpdate;
         this.title = title;
         this.description = description;
@@ -72,6 +79,7 @@ public class Film {
         this.special_features = film.special_features;
         this.actors = actors;
         this.inventories=film.inventories;
+        this.categories=film.categories;
     }
 
     @Override

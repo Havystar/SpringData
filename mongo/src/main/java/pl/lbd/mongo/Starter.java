@@ -51,7 +51,7 @@ public class Starter implements CommandLineRunner {
     FilmService filmService;
 
     public void run(String... args) throws Exception {
-        //insertData();
+        insertData();
         taskRunner();
 
 
@@ -62,23 +62,25 @@ public class Starter implements CommandLineRunner {
         //List<Category> task1 = categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
         //task2
         //List <Film> task2 = categoryRepository.findCategoryByName("Horror").get().getFilms();
+        Pageable paging = PageRequest.of(0, 20);
+        List<Film>task2=filmRepository.findFilmByCategories_name("Horror",paging);
         //task3
         //List <Film> task3 = languageRepository.findByName("Polski").get().getFilms();
         //task4
         //List <Film> task4 = actorRepository.findActorByFirstName("Zenek").get().getFilms();
         //Task5
-        String status= filmService.getStatus("title1");
+       // String status= filmService.getStatus("title1");
         //task6
         //List <Payment> task6 = customerRepository.findCustomerByFirstName("Zenek3").get().getPayment();
         //task7
         //Customer task7 = customerRepository.findCustomerByFirstName("Zenek3").get();
-        //task8
-        //List <Staff> task8 = staffRepository.findAll();
+        //task8 Lista pracownikow danego sklepu
+        List <Staff> task8 = staffRepository.findAllByStore_Address_Address("Brzozowa");
         //task9
         //List <Film> task9 = actorRepository.findActorByFirstNameAndLastName("Zenek","Orda").get().getFilms();
         //Task10
-        List<Rental> task10= customerRepository.findFirstByFirstName("Zenek3").get().getRental();
-        System.out.println(1);
+        Pageable paging2 = PageRequest.of(0, 20,Sort.by(Sort.Order.desc("rentalDate")));
+        List<Rental>task10=rentalRepository.findAllByCustomer_FirstName("Zenek3",paging2);
     }
 
 
@@ -97,43 +99,56 @@ public class Starter implements CommandLineRunner {
         Address address2 = new Address("Lipowa","KEKW", "district2","44-100", "2234234534", now);
         Address address3 = new Address("Sieprowa","KEKWWWW", "district3","44-100", "2234234534", now);
 
-        Store store1 = new Store(now, address1);
-        Store store2 = new Store(now, address2);
-        Store store3 = new Store(now, address3);
+
 
         Actor actor1 = new Actor("Zenek", "Orda", null);
         Actor actor2 = new Actor("Kalif", "Ichdżba", null);
         Actor actor3 = new Actor("Enek", "Benek", null);
         // Actor actor1Full = new Actor("Zenek", "Orda", null);
         // actor1Full.setFilms(Arrays.asList(film1));
-        Film film1 = new Film(now, "title1",  "description1",  now,10 ,10 ,10 ,10 , Rating.G, "ASDSD");
-        Film film2 = new Film(now, "title2",  "description2",  now,10 ,10 ,10 ,10 , Rating.G, "ASDSD");
-        Film film3 = new Film(now, "title3",  "description3",  now,10 ,10 ,10 ,10 , Rating.G, "ASDSD");
 
-        Category category1 = new Category("Horror", now, Arrays.asList(film1));
-        Category category2 = new Category("Komedia", now, Arrays.asList(film2));
-        Category category3 = new Category("Nuda", now, Arrays.asList(film3));
 
+        Category category1 = new Category("Horror", now);
+        Category category2 = new Category("Komedia", now);
+        Category category3 = new Category("Nuda", now);
+
+        Film film1 = new Film(now, "title1",  "description1",  now,10 ,10,
+                10 ,10 , Rating.G, "ASDSD",Arrays.asList(category1),null);
+        Film film2 = new Film(now, "title2",  "description2",  now,10 ,10 ,
+                10 ,10 , Rating.G, "ASDSD",Arrays.asList(category2),null);
+        Film film3 = new Film(now, "title3",  "description3",  now,10 ,10 ,
+                10 ,10 , Rating.G, "ASDSD",Arrays.asList(category3),null);
 
         Language language1 = new Language("Polski", now, Arrays.asList(film1,film2));
         Language language2 = new Language("Angielski", now, Arrays.asList(film2,film3));
         Language language3 = new Language("Rosyjski", now, Arrays.asList(film1,film3));
 
 
-        Staff staff1 = new Staff("Zenek1", "Ahmed1", "asd@wp.pl", true, "nickname", "123", now, "xD", address1, store1);
-        Staff staff2 = new Staff("Zenek2", "Ahmed2", "asd@wp.pl", true, "nickname", "123", now, "xD", address2, store2);
-        Staff staff3 = new Staff("Zenek3", "Ahmed3", "asd@wp.pl", true, "nickname", "123", now, "xD", address3, store3);
+        Staff staff1Empty = new Staff("Zenek1", "Ahmed1", "asd@wp.pl", true, "nickname", "123", now, "xD", address1);
+        Staff staff2Empty = new Staff("Zenek2", "Ahmed2", "asd@wp.pl", true, "nickname", "123", now, "xD", address2);
+        Staff staff3Empty = new Staff("Zenek3", "Ahmed3", "asd@wp.pl", true, "nickname", "123", now, "xD", address3);
+
+        Store store1Empty = new Store(now, address1);
+        Store store2Empty = new Store(now, address2);
+        Store store3Empty = new Store(now, address3);
+
+        Staff staff1= new Staff(staff1Empty,store1Empty);
+        Staff staff2= new Staff(staff2Empty,store2Empty);
+        Staff staff3= new Staff(staff3Empty,store3Empty);
+        Store store1 = new Store(store1Empty,Arrays.asList(staff1));
+        Store store2 = new Store(store2Empty,Arrays.asList(staff2));
+        Store store3 = new Store(store3Empty,Arrays.asList(staff3));
 
         Payment payment1 = new Payment(20.2, now, staff1);
         Payment payment2 = new Payment(22.2, now, staff2);
         Payment payment3 = new Payment(24.2, now, staff3);
-        Rental rental1 = new Rental(now,now,now);
-        Rental rental2 = new Rental(now,now,now);
-        Rental rental3 = new Rental(now,now,now);
+        Rental rental1Empty = new Rental(now,now, LocalDate.of(1999,12,12));
+        Rental rental2Empty = new Rental(now,now,now);
+        Rental rental3Empty = new Rental(now,now,LocalDate.of(2012,12,12));
 
-        Inventory inventory1=new Inventory(store1,now,rental1);
-        Inventory inventory2=new Inventory(store2,now,rental2);
-        Inventory inventory3=new Inventory(store3,now,rental3);
+        Inventory inventory1=new Inventory(store1,now,rental1Empty);
+        Inventory inventory2=new Inventory(store2,now,rental2Empty);
+        Inventory inventory3=new Inventory(store3,now,rental3Empty);
         film1.setInventories(Arrays.asList(inventory1));
         film2.setInventories(Arrays.asList(inventory2));
         film3.setInventories(Arrays.asList(inventory3));
@@ -141,12 +156,18 @@ public class Starter implements CommandLineRunner {
 
 
 
-        Customer customer1 = new Customer("Zenek1", "Ahmed3", "asd@wp.pl", true, now, now,
-                true, Arrays.asList( payment1, payment3), address1,Arrays.asList(rental1));
-        Customer customer2 = new Customer("Zenek2", "Ahmed3", "asd@wp.pl", true, now, now,
-                true,  Arrays.asList( payment2, payment3), address1,Arrays.asList(rental2));
-        Customer customer3 = new Customer("Zenek3", "Ahmed3", "asd@wp.pl", true, now, now,
-                true,  Arrays.asList( payment1, payment3), address1,Arrays.asList(rental3));
+        Customer customer1Empty = new Customer("Zenek1", "Ahmed3", "asd@wp.pl", true, now, now,
+                true, Arrays.asList( payment1, payment3), address1);
+        Customer customer2Empty = new Customer("Zenek2", "Ahmed3", "asd@wp.pl", true, now, now,
+                true,  Arrays.asList( payment2, payment3), address1);
+        Customer customer3Empty = new Customer("Zenek3", "Ahmed3", "asd@wp.pl", true, now, now,
+                true,  Arrays.asList( payment1, payment3), address1);
+        Rental rental1 = new Rental(rental1Empty,customer3Empty);
+        Rental rental2 = new Rental(rental2Empty,customer2Empty);
+        Rental rental3 = new Rental(rental3Empty,customer3Empty);
+        Customer customer1 = new Customer(customer1Empty,Arrays.asList(rental1Empty));
+        Customer customer2 = new Customer(customer2Empty,Arrays.asList(rental2Empty));
+        Customer customer3 = new Customer(customer3Empty,Arrays.asList(rental3Empty,rental1Empty));
 
         Film film1Full = new Film(film1, Arrays.asList(actor1));
         Film film2Full = new Film(film2, Arrays.asList(actor2));

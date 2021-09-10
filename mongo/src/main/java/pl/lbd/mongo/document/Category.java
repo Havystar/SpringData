@@ -17,16 +17,16 @@ public class Category {
     private String categoryId;
     private String name;
     private LocalDate lastUpdate;
-    private List<Film> films;
+    //private List<Film> films;
 
     public Category(String name, LocalDate lastUpdate) {
         this.name = name;
         this.lastUpdate = lastUpdate;
     }
-
-    public Category(String name, LocalDate lastUpdate, List<Film> films) {
-        this.name = name;
-        this.lastUpdate = lastUpdate;
-        this.films = films;
-    }
+//
+//    public Category(String name, LocalDate lastUpdate /*List<Film> films*/) {
+//        this.name = name;
+//        this.lastUpdate = lastUpdate;
+//       // this.films = films;
+//    }
 }

@@ -24,6 +24,7 @@ public class Staff {
     private Store store;
 
 
+
     public Staff(String firstName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,8 +35,20 @@ public class Staff {
         this.lastUpdate = lastUpdate;
         this.picture = picture;
     }
+    public Staff(Staff staff,Store store)
+    {
+        this.firstName = staff.firstName;
+        this.lastName = staff.lastName;
+        this.email = staff.email;
+        this.active = staff.active;
+        this.username = staff.username;
+        this.password = staff.password;
+        this.lastUpdate = staff.lastUpdate;
+        this.picture = staff.picture;
+        this.store=store;
+    }
 
-    public Staff(String firstName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture, Address address, Store store) {
+    public Staff(String firstName, String lastName, String email, Boolean active, String username, String password, LocalDate lastUpdate, String picture, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -47,4 +60,5 @@ public class Staff {
         this.address = address;
         this.store = store;
     }
+
 }
