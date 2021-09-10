@@ -75,7 +75,7 @@ public class Starter implements CommandLineRunner {
         //task4
         List<Actor>task4= actorRepository.findAllByFilm("Tytanic");
         //task5
-        String task5 = filmService.getStatus(1L);
+        Boolean  task5 = filmService.getStatus(1L);
         //task6
         List<Payment>task6=customerRepository.findCustomerPayments(1L);
         //task7
@@ -85,7 +85,7 @@ public class Starter implements CommandLineRunner {
         //task9
         List<Film>task9= filmRepository.findAllByActorNameAndLastName("imie", "nazwisko");
         //task10
-         Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.asc("rentalDate")));
+         Pageable paging2 = PageRequest.of(0,20,Sort.by(Sort.Order.desc("rentalDate")));
          List<Rental> task10=customerRepository.findCustomerRentals(2L,paging2);
 
 

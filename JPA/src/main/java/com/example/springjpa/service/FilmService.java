@@ -15,14 +15,14 @@ public class FilmService {
     @Autowired
     RentalRepository repository;
 
-    public String getStatus(Long id) {
+    public Boolean getStatus(Long id) {
         LocalDate now = LocalDate.now();
         Optional<Rental> rental = repository.findByFilmId(id);
-        if(rental.get()!=null&&rental.get().getReturnDate()!=null) {
-            return "dostępny";
+        if((rental.get()!=null&&rental.get().getReturnDate()!=null)||rental.get()==null) {
+            return  true;
         }
         else {
-            return "wypozyczony";
+            return false;
         }
     }
 }

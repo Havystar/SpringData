@@ -51,7 +51,7 @@ public class Starter implements CommandLineRunner {
     FilmService filmService;
 
     public void run(String... args) throws Exception {
-        insertData();
+       // insertData();
         taskRunner();
 
 
@@ -59,25 +59,24 @@ public class Starter implements CommandLineRunner {
 
     public void taskRunner(){
         //task1
-        //List<Category> task1 = categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+        List<Category> task1 = categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
         //task2
-        //List <Film> task2 = categoryRepository.findCategoryByName("Horror").get().getFilms();
         Pageable paging = PageRequest.of(0, 20);
         List<Film>task2=filmRepository.findFilmByCategories_name("Horror",paging);
         //task3
-        //List <Film> task3 = languageRepository.findByName("Polski").get().getFilms();
+        List <Film> task3 = languageRepository.findByName("Polski").get().getFilms();
         //task4
-        //List <Film> task4 = actorRepository.findActorByFirstName("Zenek").get().getFilms();
+        List <Film> task4 = actorRepository.findActorByFirstName("Zenek").get().getFilms();
         //Task5
-       // String status= filmService.getStatus("title1");
+        Boolean status= filmService.getStatus("title1");
         //task6
-        //List <Payment> task6 = customerRepository.findCustomerByFirstName("Zenek3").get().getPayment();
+        List <Payment> task6 = customerRepository.findFirstByFirstName("Zenek3").get().getPayment();
         //task7
-        //Customer task7 = customerRepository.findCustomerByFirstName("Zenek3").get();
+        Customer task7 = customerRepository.findFirstByFirstName("Zenek3").get();
         //task8 Lista pracownikow danego sklepu
         List <Staff> task8 = staffRepository.findAllByStore_Address_Address("Brzozowa");
         //task9
-        //List <Film> task9 = actorRepository.findActorByFirstNameAndLastName("Zenek","Orda").get().getFilms();
+        List <Film> task9 = actorRepository.findActorByFirstNameAndLastName("Zenek","Orda").get().getFilms();
         //Task10
         Pageable paging2 = PageRequest.of(0, 20,Sort.by(Sort.Order.desc("rentalDate")));
         List<Rental>task10=rentalRepository.findAllByCustomer_FirstName("Zenek3",paging2);
