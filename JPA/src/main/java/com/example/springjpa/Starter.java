@@ -164,7 +164,7 @@ public class Starter implements CommandLineRunner {
         actorRepository.saveAll(Arrays.asList(actor1, actor, actor2));
     }
 
-    @Transactional
+    
     public void createFilmActor() {
         Optional<Film> film = filmRepository.findById(1L);
         Optional<Film> film1 = filmRepository.findById(2L);
